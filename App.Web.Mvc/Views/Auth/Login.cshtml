@@ -1,0 +1,52 @@
+﻿@model UserLoginDto
+@{
+    Layout = "_UserLoginLayout";
+    ViewBag.Title = "Giriş Yap";
+}
+@section ScriptsLogin{
+    @await Html.PartialAsync("_ValidationScriptsPartial");
+}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-5">
+            <div class="card shadow-lg border-0 rounded-lg mt-5">
+                <div class="card-header"><h3 class="text-center font-weight-light my-4">Login</h3></div>
+                <div class="card-body">
+                    @if (TempData["Message"] != null)
+                    {
+                        <div class="alert alert-success mt-2" role="alert">
+                            @TempData["Message"]
+                        </div>
+                    }
+                    <form asp-action="Login" asp-controller="Auth" asp-route-returnUrl="@Context.Request.Query["returnUrl"]">
+                        <div asp-validation-summary="ModelOnly" class="text-danger" id="validation-summary"></div>
+                        <div class="form-group">
+                            <label class="small mb-1" asp-for="Email">Email</label>
+                            <input class="form-control" asp-for="Email" type="email" placeholder="Enter email address" />
+                            <span class="text-danger" asp-validation-for="Email"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="small mb-1" asp-for="Password">Password</label>
+                            <input class="form-control py-4" asp-for="Password" type="password" placeholder="Enter password" />
+                            <span class="text-danger" asp-validation-for="Password"></span>
+
+                        </div>
+                        <div class="form-group">
+                            <div class="custom-control custom-checkbox">
+                                <input class="custom-control-input" asp-for="RememberMe" type="checkbox" />
+                                <label class="custom-control-label" asp-for="RememberMe">Remember password</label>
+                            </div>
+                        </div>
+                        <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
+                            <a class="small" asp-controller="Auth" asp-action="ForgotPassword">Forgot Password?</a>
+                            <button type="submit" class="btn btn-primary">Login</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="card-footer text-center">
+                    <div class="small"><a asp-action="Register" asp-controller="Auth">Need an account? Sign up!</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

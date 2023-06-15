@@ -1,0 +1,83 @@
+﻿@model DataResult<CategoryListDto>
+@{
+	ViewBag.Title = "Kategoriler";
+}
+<ol class="breadcrumb mb-3 mt-2">
+	<li class="breadcrumb-item"><a asp-area="Admin" asp-controller="Home" asp-action="Index">Admin</a></li>
+	<li class="breadcrumb-item active"><a asp-area="Admin" asp-controller="Category" asp-action="Index">Categories</a></li>
+</ol>
+@if (Model.ResultStatus == ResultStatus.Success)
+{
+	<div id="modalPlaceHolder" aria-hidden="true"></div>
+	<div class="card mt-2">
+		<div class="card-header">
+			<i class="fas fa-table mr-1"></i>
+			Kategoriler
+		</div>	
+		<div class="card-body">
+		
+			<div class="table-responsive">
+				<div>
+					<a asp-controller="Category" asp-action="Create" class="btn btn-success">Kategori Ekle</a>
+				</div>
+				<table class="table table-bordered display" id="categoriesTable" width="100%" cellspacing="0">
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>Adı</th>
+							<th>Açıklaması</th>
+							<th>Aktif Mi?</th>
+							<th>Silinmiş Mi?</th>
+							<th>Oluşturan Kullanıcı Adı</th>
+							<th>Son Düzenleyen Kullanıcı Adı</th>
+							<th>İşlemler</th>
+						</tr>
+					</thead>
+				
+					<tbody>
+						@foreach (var category in Model.Data.Categories)
+						{
+							<tr name="@category.Id">
+								<td>@category.Id</td>
+								<td>@category.Name</td>
+								<td>@category.Description</td>
+								<td>@(category.IsActive ? "Yes" : "No")</td>
+								<td>@(category.IsDeleted ? "Yes" : "No")</td>
+								<td>@category.CreatedByName</td>
+								<td>@category.ModifiedByName</td>
+								<td>
+									<a class="btn btn-primary btn-sm " asp-controller="Category" asp-action="Edit" asp-route-id="@category.Id"><span class="fas fa-edit"></span></a>
+									<a class="btn btn-danger btn-sm " asp-controller="Category" asp-action="Delete" asp-route-id="@category.Id"><span class="fas fa-minus-circle"></span></a>
+								</td>
+							</tr>
+						}
+					</tbody>
+					<tfoot>
+						<tr>
+							<th>ID</th>
+							<th>Adı</th>
+							<th>Açıklaması</th>
+							<th>Aktif Mi?</th>
+							<th>Silinmiş Mi?</th>
+							<th>OluşturanKullanıcı Adı</th>
+							<th>Son Düzenleyen Kullanıcı Adı</th>
+							<th>İşlemler</th>
+						</tr>
+					</tfoot>
+				</table>
+			</div>
+		</div>
+	</div>
+
+}
+@if (Model.ResultStatus == ResultStatus.Error)
+{
+	<div class="alert alert-danger mt-3">
+		@Model.Message<br />
+		Dashboard sayfasına geri dönmek için lütfen <a class="alert-link" asp-area="Admin" asp-controller="Home" asp-action="Index">tıklayınız.</a>
+	</div>
+
+}
+@section Scripts{
+	<script src="~/admintema/js/categoryIndex.js" type="text/javascript"></script>
+}

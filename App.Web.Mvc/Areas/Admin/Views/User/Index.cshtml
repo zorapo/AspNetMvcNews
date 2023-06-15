@@ -1,0 +1,68 @@
+﻿@model UserListDto;
+@{
+
+	ViewBag.Title = "Kullanıcılar";
+}
+<ol class="breadcrumb mb-3 mt-2">
+	<li class="breadcrumb-item"><a asp-area="Admin" asp-controller="Home" asp-action="Index">Admin</a></li>
+	<li class="breadcrumb-item active"><a asp-area="Admin" asp-controller="User" asp-action="Index">User</a></li>
+</ol>
+
+<div id="modalPlaceHolder" aria-hidden="true"></div>
+<div class="card mb-4 mt-2">
+	<div class="card-header">
+		<i class="fas fa-table mr-1"></i>
+		Kullanıcılar
+	</div>
+	<div class="card-body">
+
+		<div class="table-responsive">
+			<div>
+				<a asp-controller="User" asp-action="Create" class="btn btn-success">Kullanıcı Ekle</a>
+			</div>
+			<table class="table table-bordered" id="usersTable" width="100%" cellspacing="0">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Kullanıcı Adı</th>
+						<th>E-Posta Adresi</th>
+						<th>Resim</th>
+						<th>Oluşturma Tarihi</th>
+						<th>İşlemler</th>
+					</tr>
+				</thead>
+
+				<tbody>
+					@foreach (var user in Model.Users)
+					{
+						<tr name="@user.Id">
+							<td>@user.Id</td>
+							<td>@user.UserName</td>
+							<td>@user.Email</td>
+							<td><img src="~/img/user/@user.Picture" class="image-style" /></td>
+							<td>@user.CreatedAt.GetValueOrDefault().ToShortDateString()</td>
+							<td class="text-center">						    						
+								<a class="btn btn-primary btn-sm" asp-area="Admin" asp-controller="User" asp-action="Edit" asp-route-userId="@user.Id"><span class="fas fa-edit"></span></a>
+								<a class="btn btn-danger btn-sm" asp-area="Admin" asp-controller="User" asp-action="Delete" asp-route-userId="@user.Id"><span class="fas fa-minus-circle"></span></a>						
+							</td>
+						</tr>
+					}
+				</tbody>
+				<tfoot>
+					<tr>
+						<th>ID</th>
+						<th>Kullanıcı Adı</th>
+						<th>E-Posta Adresi</th>
+						<th>Resim</th>
+						<th>Oluşturma Tarihi</th>
+						<th>İşlemler</th>
+					</tr>
+				</tfoot>
+			</table>
+		</div>
+	</div>
+</div>
+@section Scripts{
+	<script src="~/admintema/js/userIndex.js" type="text/javascript"></script>
+}
+

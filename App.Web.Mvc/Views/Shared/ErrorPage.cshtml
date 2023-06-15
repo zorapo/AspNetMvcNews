@@ -1,0 +1,25 @@
+﻿@{
+    ViewData["Title"] = "Hata!";
+}
+
+@if (ViewBag.ErrorTitle == null)
+{
+    <div class="container d-flex justify-content-center my-5">
+        <div class="row">
+            <h1 class="text-danger">
+                İsteğiniz işlenirken bir hata oluştu.
+                Destek ekibi bilgilendirildi ve düzeltme üzerinde çalışıyoruz.
+            </h1>
+            <h3><a href="#" class="font-pt mb-2 text-danger">Lütfen aspnetmvcnews@gmail.com üzerinden bizimle iletişime geçin!</a></h3>
+        </div>
+    </div>
+}
+else
+{
+    <div class="container d-flex justify-content-center my-5">
+        <div class="row">
+            <h1 class="text-danger">@ViewBag.ErrorTitle</h1>
+            <h3><a href="#" class="font-pt mb-2 text-danger">@ViewBag.ErrorMessage</a></h3>
+        </div>
+    </div>
+}

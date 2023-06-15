@@ -1,0 +1,85 @@
+﻿@model NewsUpdateDto
+@{
+	ViewData["Title"] = "Haber Düzenle";
+}
+
+	<div class="row">
+		<div class="col-md-4" mt-5">
+
+			<h5>Kullanıcı Güncelle</h5>
+
+			<form asp-action="Edit" enctype="multipart/form-data">
+				<div asp-validation-summary="ModelOnly" class="text-danger">
+				</div>
+				<input type="hidden" asp-for="@Model.Id" />
+				<div class="form-group">
+					<label asp-for="@Model.UserId" class="control-label">Kullanıcı</label>
+					<select asp-for="@Model.UserId" class="form-control" asp-items="ViewBag.UserId"></select>
+					<span asp-validation-for="@Model.UserId" class="text-danger"></span>
+				</div>
+				<div class="form-group">
+					<label asp-for="@Model.CategoryId" class="control-label">Kategori</label>
+					<select asp-for="@Model.CategoryId" class="form-control" asp-items="ViewBag.CategoryId"></select>
+					<span asp-validation-for="@Model.CategoryId" class="text-danger"></span>
+				</div>
+				<div class="form-group">
+					<label asp-for="@Model.Title" class="control-label">Başlık</label>
+					<input asp-for="@Model.Title" class="form-control" />
+					<span asp-validation-for="@Model.Title" class="text-danger"></span>
+				</div>
+				<div class="form-group">
+					<label asp-for="@Model.SubTitle" class="control-label">İçerik Giriş</label>
+					<textarea asp-for="@Model.SubTitle" class="form-control" rows="3"></textarea>
+					<span asp-validation-for="@Model.SubTitle" class="text-danger"></span>
+				</div>
+				<div class="form-group">
+					<label asp-for="@Model.Content" class="control-label">İçerik</label>
+					<textarea asp-for="@Model.Content" class="form-control" rows="5"></textarea>
+					<span asp-validation-for="@Model.Content" class="text-danger"></span>
+				</div>
+				<div class="form-group">
+					<label asp-for="@Model.ImagePath"></label>
+					<input asp-for="@Model.ImagePath" type="hidden" />
+					<img class="image-style" src="~/img/news/@Model.ImagePath" alt="@Model.ImagePath" />
+				</div>
+				<div class="form-group">
+					<label asp-for="@Model.ImageFile"></label>
+					<input class="form-control-file" type="file" accept="image/*" asp-for="@Model.ImageFile" />
+					<span class="text-danger" asp-validation-for="@Model.ImageFile"></span>
+				</div>
+				<div class="form-group">
+					<label asp-for="@Model.UpdatedAt" class="control-label"></label>
+					<input asp-for="@Model.UpdatedAt" class="form-control" />
+					<span asp-validation-for="@Model.UpdatedAt" class="text-danger"></span>
+				</div>
+				<div class="form-group form-check">
+					<label class="form-check-label">
+						<input class="form-check-input" asp-for="@Model.IsDeleted" /> Silindi Mi?
+					</label>
+				</div>
+				<div class="form-group form-check">
+					<label class="form-check-label">
+						<input class="form-check-input" asp-for="@Model.IsActive" /> Aktif Mi?
+					</label>
+				</div>
+
+				<div class="form-group">
+					<a class="btn btn-danger " asp-area="Admin" asp-action="Index" asp-controller="News"><span class="fas fa-times"></span> İptal</a>
+					<input type="submit" value="Kaydet" class="btn btn-primary" />
+				</div>
+			</form>
+		</div>
+	</div>
+
+
+@*@if (Model.ResultStatus == ResultStatus.Error)
+{
+	<div class="alert alert-danger mt-3">
+		@Model.Message<br />
+		Haber Listeleme sayfasına geri dönmek için lütfen <a class="alert-link" asp-area="Admin" asp-controller="News" asp-action="Index">tıklayınız.</a>
+	</div>
+
+}
+*@
+
+

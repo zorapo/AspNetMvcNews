@@ -1,0 +1,45 @@
+﻿@model App.Entities.Dtos.UserDtos.UserUpdateDto
+
+@{
+	ViewBag.Title="Profil Düzenle";
+}
+<div class="row">
+	<div class="colcol-lg-6 offset-lg-3">
+		<div class="card mt-3">
+			<div class="card-header">
+				<h4 class="text-center"><span class="fas fa-edit"></span> Profil Düzenle</h4>
+			</div>
+			<div class="card-body">
+                <form asp-action="UserDetails" method="post" enctype="multipart/form-data">
+                   
+                    <div asp-validation-summary="ModelOnly" class="text-danger" id="validation-summary"></div>
+                    <input asp-for="Id" type="hidden" />
+                    <div class="form-group">
+                        <label asp-for="UserName"></label>
+                        <input class="form-control" asp-for="UserName" placeholder="Lütfen kullanıcı adı giriniz." />
+                        <span class="text-danger" asp-validation-for="UserName"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Email"></label>
+                        <input class="form-control" type="email" asp-for="Email" placeholder="Lütfen e-posta adresi giriniz." />
+                        <span class="text-danger" asp-validation-for="Email"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Picture"></label>
+                        <input asp-for="Picture" type="hidden" />
+                        <img class="image-style" src="~/img/user/@Model.Picture" alt="@Model.UserName" />
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="PictureFile"></label>
+                        <input class="form-control-file" type="file" accept="image/*" asp-for="PictureFile" />
+                        <span class="text-danger" asp-validation-for="PictureFile"></span>
+                    </div>
+                    <div class="form-group mt-5">
+                        <a class="btn btn-danger " asp-area="Admin" asp-action="Index" asp-controller="Home"><span class="fas fa-times"></span> İptal</a>
+                        <button type="submit" class="btn btn-primary"><span class="fas fa-times"></span> Kaydet</button>
+                    </div>
+                </form>
+			</div>
+		</div>
+	</div>
+</div>

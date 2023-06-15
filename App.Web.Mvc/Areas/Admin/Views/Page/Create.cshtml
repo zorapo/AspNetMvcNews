@@ -1,0 +1,65 @@
+﻿@model App.Entities.Concrete.Page
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Yeni Sayfa Oluştur</h1>
+
+<h4>Sayfa</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Content" class="control-label"></label>
+                <input asp-for="Content" class="form-control" />
+                <span asp-validation-for="Content" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Content_One" class="control-label"></label>
+                <input asp-for="Content_One" class="form-control" />
+                <span asp-validation-for="Content_One" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Content_Two" class="control-label"></label>
+                <input asp-for="Content_Two" class="form-control" />
+                <span asp-validation-for="Content_Two" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ImageFile"></label>
+                <input class="form-control-file" type="file" accept="image/*" asp-for="ImageFile" />
+                <span class="text-danger" asp-validation-for="ImageFile"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CreatedAt" class="control-label"></label>
+                <input asp-for="CreatedAt" class="form-control" />
+                <span asp-validation-for="CreatedAt" class="text-danger"></span>
+            </div>
+
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsActive" /> @Html.DisplayNameFor(model => model.IsActive)
+                </label>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Kaydet" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Listeye Geri Dön</a>
+</div>
+
+
+

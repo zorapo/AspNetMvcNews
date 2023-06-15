@@ -1,0 +1,88 @@
+﻿@model NewsListDto
+<!-- Catagory Posts Area Start -->
+<div class="gazette-catagory-posts-area">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-12 col-md-4">
+                <div class="single-catagory-post-thumb mb-15">
+                    @foreach (var item in Model.News.OrderByDescending(t => t.CreatedAt).Take(1).ToList())
+                    {
+                        <div class="single-catagory-post-thumb mb-15">
+                            <a asp-action="Detail" asp-controller="News" asp-route-id="@item.Id"><img src="~/img/news/@item.ImagePath" style="height:100% ;width:100%" alt=""></a>
+
+                        </div>
+                        <div class="gazette-post-tag">
+                            <a asp-action="Index" asp-controller="Category" asp-route-id="@item.CategoryId">@item.Category.Name</a>
+                        </div>
+                    }
+                </div>
+
+                @foreach (var item in Model.News.OrderByDescending(t => t.CreatedAt).Take(4).ToList())
+                {
+                    <!-- Single Catagory Post -->
+                    <div class="gazette-single-catagory-post">
+
+                        <!-- Post Tag -->
+                        <h5><a asp-action="Detail" asp-controller="News" asp-route-id="@item.Id" class="font-pt">@item.Title</a></h5>
+                        <span>@item.CreatedAt.GetValueOrDefault().ToShortDateString()</span>
+                    </div>
+
+                }
+
+
+            </div>
+            <div class="col-12 col-md-4">
+                <div class="row">
+                    @foreach (var item in Model.News.OrderBy(t => t.CreatedAt).Take(4).ToList())
+                    {
+                        <div class="col-12 col-md-6">
+                            <!-- Single Catagory Post -->
+                            <div class="gazette-single-catagory-post">
+                                <div class="single-catagory-post-thumb mb-15">
+
+                                    <img src="~/img/news/@item.ImagePath" style="height:100% ;width:100%" alt="">
+                                </div>
+                                <!-- Post Tag -->
+                                <div class="gazette-post-tag">
+                                    <a asp-action="Index" asp-controller="Category" asp-route-id="@item.CategoryId">@item.Category.Name</a>
+                                </div>
+                                <h5><a asp-action="Detail" asp-controller="News" asp-route-id="@item.Id" class="font-pt">@item.Title</a></h5>
+                                <span>@item.CreatedAt.GetValueOrDefault().ToShortDateString()</span>
+                            </div>
+                        </div>
+
+                    }
+
+                </div>
+            </div>
+            <div class="col-12 col-md-4">
+                <!-- Single Catagory Post -->
+                <div class="gazette-single-catagory-post">
+                    @foreach (var item in Model.News.OrderBy(t => t.CreatedAt).Take(1).ToList())
+                    {
+                        <div class="single-catagory-post-thumb mb-15">
+                            <a asp-action="Detail" asp-controller="News" asp-route-id="@item.Id"><img src="~/img/news/@item.ImagePath" style="height:100% ;width:100%" alt=""></a>
+
+                        </div>
+                        <div class="gazette-post-tag">
+                            <a asp-action="Index" asp-controller="Category" asp-route-id="@item.CategoryId">@item.Category.Name</a>
+                        </div>
+                    }
+
+                    <!-- Post Tag -->
+                    @foreach (var item in Model.News.OrderBy(t => t.CreatedAt).Take(4).ToList())
+                    {
+                        <div class="gazette-single-catagory-post">
+                            <h5><a asp-action="Detail" asp-controller="News" asp-route-id="@item.Id" class="font-pt">@item.Title</a></h5>
+                            <span>@item.CreatedAt.GetValueOrDefault().ToShortDateString()</span>
+                        </div>
+                        <!-- Single Catagory Post -->
+                    }
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

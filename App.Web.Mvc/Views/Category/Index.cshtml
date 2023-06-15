@@ -1,0 +1,137 @@
+﻿@model CategoryPageDto
+
+<div class="breadcumb-area section_padding_50">
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+				<div class="breacumb-content d-flex align-items-center justify-content-between">
+					<!-- Post Tag -->
+					<div class="gazette-post-tag">
+						<a href="#">@Model.Categories.Categories.First().Name</a>
+					</div>
+					<p class="editorial-post-date text-dark mb-0">@DateTime.Now.ToShortDateString() </p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+@if (Model.PagedNews == null || Model.PagedNews.Count == 0)
+{
+	<div class="container d-flex justify-content-center my-5">
+		<div class="row">
+			<h3><a href="#" class="font-pt mb-2">Aradığınız kategoride haber bulunamadı!</a></h3>
+		</div>
+	</div>
+}
+else
+{
+
+	@await Html.PartialAsync("_EditorialSlider",Model.NewsList)
+	@*<partial name="_EditorialSlider.cshtml" />*@
+
+	<section class="catagory-welcome-post-area section_padding_100">
+		<div class="container">
+
+			<div class="row">
+				@foreach (var item in Model.PagedNews.Take(3))
+				{
+					<div class=" col-12 col-md-4">
+						<!-- Gazette Welcome Post -->
+						<div class="gazette-welcome-post">
+							<!-- Post Tag -->
+							<div class="gazette-post-tag">
+								<a href="#">@item.Category.Name</a>
+							</div>
+							<h2 class="font-pt">@item.Title</h2>
+							<p class="gazette-post-date">@item.CreatedAt.GetValueOrDefault().ToShortDateString()</p>
+							<!-- Post Thumbnail -->
+							<div class="blog-post-thumbnail my-5" style="max-width: 350px; max-height:205px">
+								<img class="img-fluid" src="~/img/news/@item.ImagePath" alt="post-thumb" width="100%" height="100%">
+							</div>
+							<!-- Post Excerpt -->
+							<p>@(item.SubTitle.ToString().Length > 150 ? item.SubTitle.ToString().Substring(0, 150) + "..." : item.SubTitle)</p>
+							<!-- Reading More -->
+							<div class="post-continue-reading-share mt-30">
+								<div class="post-continue-btn">
+									<a href="/News/Detail/@item.Id" class="font-pt">DAHA FAZLASI... <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+								</div>
+							</div>
+						</div>
+					</div>
+				}
+
+
+
+
+				@foreach (var item in Model.PagedNews.Skip(3).Take(2))
+				{
+					<div class="col-12 col-md-6">
+
+						<div class="gazette-welcome-post">
+							<!-- Post Tag -->
+							<div class="gazette-post-tag">
+								<a href="#">@item.Category.Name</a>
+							</div>
+							<h2><a href="" class="font-pt">@item.Title</a></h2>
+							<p class="gazette-post-date">@item.CreatedAt.GetValueOrDefault().ToShortDateString()</p>
+							<!-- Post Thumbnail -->
+							<div class="blog-post-thumbnail my-5" style="max-width: 540px; max-height:315px">
+								<img class="img-fluid" src="~/img/news/@item.ImagePath" alt="post-thumb" width="100%" height="100%">
+							</div>
+							<!-- Post Excerpt -->
+							<p>@item.SubTitle</p>
+							<!-- Reading More -->
+							<div class="post-continue-reading-share mt-30">
+								<div class="post-continue-btn">
+									<a href="#" class="font-pt">Continue Reading <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+								</div>
+							</div>
+						</div>
+
+						<!-- Gazette Welcome Post -->
+
+					</div>
+				}
+
+
+				<!-- Gazette Welcome Post -->
+				@foreach (var item in Model.PagedNews.Skip(5).Take(1))
+				{
+					<div class="col-12">
+						<!-- Gazette Welcome Post -->
+						<div class="gazette-welcome-post d-md-flex align-items-center">
+							<!-- Post Thumbnail -->
+							<div class="blog-post-thumbnail" style="max-width: 555px; max-height:350px">
+								<img class="img-fluid" src="~/img/news/@item.ImagePath" alt="post-thumb" width="100%" height="100%">
+							</div>
+							<div class="welcome-post-contents ml-30">
+								<!-- Post Tag -->
+								<div class="gazette-post-tag">
+									<a href="#">@item.Category.Name</a>
+								</div>
+								<h2><a href="" class="font-pt">@item.Title</a></h2>
+								<p class="gazette-post-date mb-15">@item.CreatedAt.GetValueOrDefault().ToShortDateString()</p>
+								<!-- Post Excerpt -->
+								<p>@item.SubTitle</p>
+								<!-- Reading More -->
+								<div class="post-continue-reading-share mt-15">
+									<div class="post-continue-btn">
+										<a href="#" class="font-pt">Continue Reading <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				}
+			
+			</div>
+			<div class="row">
+				<div class="col-12">
+					<div class="gazette-pagination-area">
+						@Html.PagedListPager(Model.PagedNews, page => Url.Action("Index","Category", new { pageNo=page,categoryId=Model.Category.Id}), new PagedListRenderOptions() { UlElementClasses = new[] { "pagination" }, LiElementClasses = new[] { "page-item" }, PageClasses = new[] { "page-link" } })
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+}

@@ -1,0 +1,35 @@
+﻿@model NewsListDto
+<section class="gazatte-editorial-area section_padding_100 bg-dark">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="editorial-post-slides owl-carousel">
+                    @foreach (var item in Model.News.OrderByDescending(t => t.CreatedAt).Take(4).ToList())
+                    {
+                        <div class="editorial-post-single-slide">
+                            <div class="row">
+                                <div class="col-12 col-md-5">
+                                    <div class="editorial-post-thumb">
+                                        <img src="~/img/news/@item.ImagePath" style="height:100% ;width:100%" alt="">
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-7">
+                                    <div class="editorial-post-content">
+                                        <!-- Post Tag -->
+                                        <div class="gazette-post-tag">
+                                            <a asp-action="Index" asp-controller="Category" asp-route-id="@item.CategoryId">@item.Category.Name</a>
+                                        </div>
+
+                                        <h2> <a asp-action="Detail" asp-controller="News" asp-route-id="@item.Id" class="font-pt">@item.Title</a></h2>
+                                        <p class="editorial-post-date mb-15">@item.CreatedAt.GetValueOrDefault().ToShortDateString()</p>
+                                        <p>@item.SubTitle</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

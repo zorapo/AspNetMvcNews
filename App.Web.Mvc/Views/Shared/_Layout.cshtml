@@ -1,0 +1,87 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <!-- Title  -->
+    <title>TheGazette - News Magazine HTML5 Template | Home</title>
+
+    <!-- Favicon  -->
+    <link rel="icon" href="~/tema/img/core-img/favicon.ico">
+
+    <!-- Core Style CSS -->
+    <link rel="stylesheet" href="~/tema/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/tema/css/core-style.css">
+    <link rel="stylesheet" href="~/tema/css/style.css">
+	
+    <!-- Responsive CSS -->
+    <link href="~/tema/css/responsive.css" rel="stylesheet">
+</head>
+<body>
+    <header class="header-area">
+        <!-- Header Area Start -->
+        @await Html.PartialAsync("_TopHeader")
+        <!-- Middle Header Area -->
+        @await Html.PartialAsync("_MiddleHeader")
+        @*<partial name="_MiddleHeader.cshtml" />*@
+
+        <!-- Bottom Header Area -->
+ @*       @await Component.InvokeAsync("Navbar")*@
+        @await Html.PartialAsync("_BottomHeader")
+        @*<partial name="_BottomHeader.cshtml" />*@
+
+    </header>
+    <!-- Header Area End -->
+
+    <!-- Welcome Blog Slide Area Start -->
+ 
+    <!-- Welcome Blog Slide Area End -->
+
+    <!-- Latest News Marquee Area Start -->
+
+    <!-- Latest News Marquee Area End -->
+
+    <!-- Main Content Area Start -->
+       @RenderBody()
+    <!-- Main Content Area End -->
+
+    <!-- Catagory Posts Area Start -->
+
+    <!-- Catagory Posts Area End -->
+
+    <!-- Video Posts Area Start -->
+
+    <!-- Video Posts Area End -->
+ 
+    <!-- Editorial Area Start -->
+
+    <!-- Editorial Area End -->
+
+    <!-- Footer Area Start -->
+    @await Html.PartialAsync("_Footer")
+
+    @*<partial name="_Footer.cshtml" />*@
+    <!-- Footer Area End -->
+
+    <!-- jQuery (Necessary for All JavaScript Plugins) -->
+    <script src="~/tema/js/jquery/jquery-2.2.4.min.js"></script>
+    <!-- Popper js -->
+    <script src="~/tema/js/popper.min.js"></script>
+    <!-- Bootstrap js -->
+    <script src="~/tema/js/bootstrap.min.js"></script>
+    <!-- Plugins js -->
+    <script src="~/tema/js/plugins.js"></script>
+    <!-- Active js -->
+    <script src="~/tema/js/active.js"></script>
+    <!-- Google Maps js -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDk9KNSL1jTv4MY9Pza6w8DJkpI_nHyCnk"></script>
+    <script src="~/tema/js/map-active.js"></script>
+
+    @await RenderSectionAsync("Scripts", required:false)
+</body>
+</html>
