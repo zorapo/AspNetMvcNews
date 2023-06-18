@@ -11,10 +11,7 @@
                 <div class="tags">
                     <a asp-action="Index" asp-controller="Category" asp-route-id="@item.CategoryId">@item.Category.Name</a>
                 </div>
-                <h3>
-                    <a href="/@Url.FriendlyUrl(item.Title)/@item.Id" class="font-pt">@item.Title</a>
-
-                </h3>
+                <h3><a href="News/Details/@Url.FriendlyUrl(item.Title)/@item.Id" class="font-pt">@item.Title</a></h3>
                 <div class="date">
                     <a href="#">@item.CreatedAt.GetValueOrDefault().ToShortDateString()</a>
                 </div>

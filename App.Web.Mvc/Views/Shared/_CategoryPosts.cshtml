@@ -24,7 +24,7 @@
                     <div class="gazette-single-catagory-post">
 
                         <!-- Post Tag -->
-                        <h5><a asp-action="Detail" asp-controller="News" asp-route-id="@item.Id" class="font-pt">@item.Title</a></h5>
+                        <h5><a href="News/Details/@Url.FriendlyUrl(item.Title)/@item.Id" class="font-pt">@item.Title</a></h5>
                         <span>@item.CreatedAt.GetValueOrDefault().ToShortDateString()</span>
                     </div>
 
@@ -47,7 +47,7 @@
                                 <div class="gazette-post-tag">
                                     <a asp-action="Index" asp-controller="Category" asp-route-id="@item.CategoryId">@item.Category.Name</a>
                                 </div>
-                                <h5><a asp-action="Detail" asp-controller="News" asp-route-id="@item.Id" class="font-pt">@item.Title</a></h5>
+                                <h5><a href="News/Details/@Url.FriendlyUrl(item.Title)/@item.Id" class="font-pt">@item.Title</a></h5>
                                 <span>@item.CreatedAt.GetValueOrDefault().ToShortDateString()</span>
                             </div>
                         </div>
@@ -74,7 +74,7 @@
                     @foreach (var item in Model.News.OrderBy(t => t.CreatedAt).Take(4).ToList())
                     {
                         <div class="gazette-single-catagory-post">
-                            <h5><a asp-action="Detail" asp-controller="News" asp-route-id="@item.Id" class="font-pt">@item.Title</a></h5>
+                            <h5><a href="News/Details/@Url.FriendlyUrl(item.Title)/@item.Id" class="font-pt">@item.Title</a></h5>
                             <span>@item.CreatedAt.GetValueOrDefault().ToShortDateString()</span>
                         </div>
                         <!-- Single Catagory Post -->
