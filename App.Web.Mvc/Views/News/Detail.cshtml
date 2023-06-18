@@ -118,29 +118,7 @@
 					}
 				</div>
 				<!-- Leave A Comment -->
-				<div class="leave-comment-area clearfix">
-					<div class="comment-form">
-						<div class="gazette-heading">
-							<h4 class="font-bold">leave a comment</h4>
-						</div>
-						<div id="result"></div>
-						<!-- Comment Form -->
-						<form asp-action="Add" asp-controller="Comment" method="post">
-							<div asp-validation-summary="ModelOnly" class="text-danger"></div>
-							<input asp-for="@Model.NewsComments.NewsId" type="hidden" />
-							<div class="form-group">
-								<input type="text" class="form-control" asp-for="@Model.NewsComments.Name" placeholder="Enter Your Full Name">
-							</div>
-							<div class="form-group">
-								<input type="email" class="form-control" asp-for="@Model.NewsComments.Email" placeholder="Email">
-							</div>
-							<div class="form-group">
-								<textarea class="form-control" name="message" asp-for="@Model.NewsComments.Comment" cols="30" rows="10" placeholder="Message"></textarea>
-							</div>
-							<button onclick="comment_form()" type="submit" class="btn leave-comment-btn">SUBMIT <i class="fa fa-angle-right ml-2"></i></button>
-						</form>
-					</div>
-				</div>
+				<partial name="~/Views/Comment/_CommentAdd.cshtml" model="new NewsCommentAddDto{NewsId=Model.NewsDto.News.Id}"/>
 			</div>
 		</div>
 	</div>
