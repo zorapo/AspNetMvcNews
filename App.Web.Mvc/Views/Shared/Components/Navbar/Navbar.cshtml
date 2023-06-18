@@ -43,8 +43,8 @@
         </ul>
         <!-- Search Form -->
         <div class="header-search-form mr-auto">
-            <form action="#">
-                <input type="search" placeholder="Input your keyword then press enter..." id="search" name="search">
+            <form asp-action="Search" asp-controller="News" method="get">
+                <input type="search" placeholder="Input your keyword then press enter..." id="keyword" name="keyword">
                 <input class="d-none" type="submit" value="submit">
             </form>
         </div>

@@ -71,7 +71,7 @@
 								@Html.DisplayFor(modelItem => item.Title)
 							</td>
 							<td>
-								@Html.DisplayFor(modelItem => item.SubTitle)
+								@item.SubTitle.Substring(0,20) ...
 							</td>
 							<td>
 								@item.Content.Substring(0,20) ...
@@ -97,9 +97,10 @@
 							<td>
 								@Html.DisplayFor(modelItem => item.ModifiedByName)
 							</td>
-							<td class="text-center">
+							<td class="text-center text-nowrap">
 								<a class="btn btn-primary btn-sm " asp-area="Admin" asp-controller="News" asp-action="Edit" asp-route-newsId="@item.Id"><span class="fas fa-edit"></span></a>
 								<a class="btn btn-danger btn-sm " asp-area="Admin" asp-controller="News" asp-action="Delete" asp-route-newsId="@item.Id"><span class="fas fa-minus-circle"></span></a>
+								<a class="btn btn-success btn-sm " asp-area="Admin" asp-controller="News" asp-action="Detail" asp-route-newsId="@item.Id"><span class="fas fa-newspaper"></span></a>
 							</td>
 						</tr>
 					}

@@ -1,6 +1,5 @@
 ﻿using App.Data.Concrete.EntityFramework.DataSeed;
 using App.Entities.Concrete;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -24,7 +23,7 @@ namespace App.Data.Concrete.EntityFramework.Context
 		}
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Data Source=DESKTOP-UJT2F75\SQLEXPRESS;Initial Catalog=AspNetMvcNews;Persist Security Info=True;User ID=sa;Password=123");
+            optionsBuilder.UseSqlServer(@"Data Source=DESKTOP-NNOFQ3O\SQL2019;Initial Catalog=AspNetMvcNews;Persist Security Info=True;User ID=sa;Password=123");
         }
 
 

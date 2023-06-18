@@ -33,11 +33,22 @@
                                         <button class="nav-link btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             Merhaba @UserManager.GetUserName(User)
                                         </button>
-
+                                        @if (User.IsInRole("Admin"))
+                                        {
+                                            
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                             <a class="dropdown-item" asp-area="Admin" asp-action="Index" asp-controller="Home">Admin Paneli</a>
                                             <a class="dropdown-item" asp-action="Logout" asp-controller="Auth" asp-area="">Çıkış Yap</a>
-                                        </div>
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                <a class="dropdown-item" asp-area="Admin" asp-action="PasswordChange" asp-controller="Setting">Şifre Değiştir</a>
+                                                <a class="dropdown-item" asp-area="Admin" asp-action="UserChangeDetails" asp-controller="Setting">Ayarlar</a>
+                                                <a class="dropdown-item" asp-action="Logout" asp-controller="Auth" asp-area="">Çıkış Yap</a>
+                                            </div>
+                                        }
                                     </li>
                                 </ul>
                             </div>

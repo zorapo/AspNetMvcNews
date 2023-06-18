@@ -68,11 +68,19 @@ app.UseAuthorization();
 
 
 app.MapControllerRoute(
-			name: "admin",
-			pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+	name: "admin",
+	pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
 		  );
+app.MapControllerRoute(
+	name: "news",
+	pattern: "{Sondakika}/{Haber}/{title}/{id}",
+	defaults: new { controller = "News", action = "Detail" });
+
 app.MapControllerRoute(
 	name: "default",
 	pattern: "{controller=Home}/{action=Index}/{id?}");
+
+
+
 
 app.Run();

@@ -14,9 +14,9 @@ namespace App.Entities.Concrete
         public int NewsId { get; set; }
         public News? News { get; set; }
 
-		[Column(TypeName = "text")]
+		[Column(TypeName = "NVARCHAR(MAX)")]
 		public string Comment { get; set; }
-        public bool IsActive { get; set; }
+        public override bool IsActive { get; set; } = false;
 		public DateTime? CreatedAt { get; set; }
 		public DateTime? UpdatedAt { get; set; }
 		public DateTime? DeletedAt { get; set; }

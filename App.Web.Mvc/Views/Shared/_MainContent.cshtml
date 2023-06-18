@@ -1,4 +1,5 @@
-﻿@model NewsListDto
+﻿
+@model NewsListDto
 <section class="main-content-wrapper section_padding_100">
 	<div class="container">
 		<div class="row">
@@ -29,7 +30,7 @@
 					}*@
 						<div class="post-continue-reading-share d-sm-flex align-items-center justify-content-between mt-30">
 							<div class="post-continue-btn">
-								<a asp-controller="News" asp-action="Detail" asp-route-id="@item.Id" class="font-pt">Continue Reading <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+								<a href="Sondakika/Haber/@Url.FriendlyUrl(item.Title)/@item.Id" class="font-pt">Continue Reading <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
 							</div>
 							<div class="post-share-btn-group">
 								<a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
@@ -61,7 +62,7 @@
 								<div class="gazette-post-tag">
 									<a asp-action="Index" asp-controller="Category" asp-route-id="@item.CategoryId">@item.Category.Name</a>
 								</div>
-								<h3><a asp-action="Detail" asp-controller="News" asp-route-id="@item.Id" class="font-pt">@item.Title</a></h3>
+								<h3><a href="/@Url.FriendlyUrl(item.Title)/@item.Id" class="font-pt">@item.Title</a></h3>
 
 								<span>@item.CreatedAt.GetValueOrDefault().ToShortDateString()</span>
 
@@ -84,12 +85,12 @@
 						{
 							<!-- Single Breaking News Widget -->
 							<div class="single-breaking-news-widget">
-								<a asp-action="Detail" asp-controller="News" asp-route-id="@item.Id"><img src="~/img/news/@item.ImagePath" style="height:100% ;width:100%" alt=""></a>
+								<a href="/@Url.FriendlyUrl(item.Title)/@item.Id"><img src="~/img/news/@item.ImagePath" style="height:100% ;width:100%" alt=""></a>
 								<div class="breakingnews-title">
-									<a asp-action="Index" asp-controller="Category" asp-route-id="@item.CategoryId"><p>@item.Category.Name</p></a>
+									<a asp-action="Index" asp-controller="Category" asp-route-categoryId="@item.Category.Id"><p>@item.Category.Name</p></a>
 								</div>
 								<div class="breaking-news-heading gradient-background-overlay">
-									<a asp-action="Detail" asp-controller="News" asp-route-id="@item.Id" class="font-pt"><h5>@item.Title</h5></a>
+									<a href="/@Url.FriendlyUrl(item.Title)/@item.Id" class="font-pt"><h5>@item.Title</h5></a>
 								</div>
 							</div>
 							<!-- Single Breaking News Widget -->

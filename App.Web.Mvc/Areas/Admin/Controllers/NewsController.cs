@@ -18,21 +18,23 @@ namespace App.Web.Mvc.Areas.Admin.Controllers
     {
         private readonly INewsService _newsService;
         private readonly ICategoryService _categoryService;
+        private readonly INewsCommentService _newsCommentService;
         private readonly UserManager<User> _userManager;
         private readonly IImageHelper _imageHelper;
         private readonly IMapper _mapper;
         private readonly ILogger<NewsController> _logger;
 
-        public NewsController(INewsService newsService, ILogger<NewsController> logger, ICategoryService categoryService, IImageHelper imageHelper, UserManager<User> userManager, IMapper mapper)
-        {
-            _newsService = newsService;
-            _logger = logger;
-            _categoryService = categoryService;
-            _imageHelper = imageHelper;
-            _userManager = userManager;
-            _mapper = mapper;
-        }
-        public async Task<IActionResult> Index()
+		public NewsController(INewsService newsService, ILogger<NewsController> logger, ICategoryService categoryService, IImageHelper imageHelper, UserManager<User> userManager, IMapper mapper, INewsCommentService newsCommentService)
+		{
+			_newsService = newsService;
+			_logger = logger;
+			_categoryService = categoryService;
+			_imageHelper = imageHelper;
+			_userManager = userManager;
+			_mapper = mapper;
+			_newsCommentService = newsCommentService;
+		}
+		public async Task<IActionResult> Index()
         {
             var model = await _newsService.GetAllAsync();
             return View(model);
@@ -128,6 +130,16 @@ namespace App.Web.Mvc.Areas.Admin.Controllers
 
         }
 
-   
-    }
+		public async Task<IActionResult> Detail(int newsId)
+		{
+
+			var news=await _newsService.GetAsync(newsId);
+
+			return View(news);
+
+		}
+
+
+
+	}
 }
