@@ -73,7 +73,7 @@ app.MapControllerRoute(
 		  );
 app.MapControllerRoute(
 	name: "news",
-	pattern: "{Sondakika}/{Haber}/{title}/{id}",
+	pattern: "{News}/{Details}/{title}/{id}",
 	defaults: new { controller = "News", action = "Detail" });
 
 app.MapControllerRoute(
