@@ -7,6 +7,8 @@
 				<div class="breacumb-content d-flex align-items-center justify-content-between">
 					<!-- Post Tag -->
 					<div class="gazette-post-tag">
+						@*@foreach (var item in Model.News.ToList().Take(1))
+						{*@
 						<a href="#">@Model.Category.Name</a>
 					</div>
 					<p class="editorial-post-date text-dark mb-0">@DateTime.Now.ToShortDateString() </p>
