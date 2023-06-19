@@ -1,18 +1,15 @@
 ﻿using App.Entities.Concrete;
+using App.Entities.Dtos.NewsCommentDtos;
+using App.Service.Abstract;
 using App.Shared.Utilities.Results.ComplexTypes;
-using App.Web.Mvc.Controllers;
 using App.Web.Mvc.Helpers.Abstract;
 using AutoMapper;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using System.Text.Json.Serialization;
-using System.Text.Json;
-using App.Service.Abstract;
-using App.Entities.Dtos.NewsCommentDtos;
 
 namespace App.Web.Mvc.Areas.Admin.Controllers
 {
-    [Area("Admin")]
+	[Area("Admin")]
     public class NewsCommentController : Controller
     {
 
@@ -32,8 +29,8 @@ namespace App.Web.Mvc.Areas.Admin.Controllers
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            var result = await _newsCommentService.GetAllByNonDeletedAndActiveAsync();
-            return View(result);
+            var result = await _newsCommentService.GetAllAsync();
+            return View(result.Data);
         }
 
         [HttpPost]
@@ -43,11 +40,10 @@ namespace App.Web.Mvc.Areas.Admin.Controllers
             return View(nameof(Index));
         }
 
-		[HttpPost]
 		public async Task<IActionResult> Approve(int commentId)
 		{
 			await _newsCommentService.ApproveAsync(commentId);
-			return View(nameof(Index));
+			return RedirectToAction("Index","NewsComment");
 		}
 		[HttpGet]
         public async Task<IActionResult> Edit(int commentId)

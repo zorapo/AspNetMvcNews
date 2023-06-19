@@ -6,6 +6,7 @@ using App.Shared.Utilities.Results.Abstract;
 using App.Shared.Utilities.Results.ComplexTypes;
 using App.Shared.Utilities.Results.Concrete;
 using AutoMapper;
+using Microsoft.AspNetCore.Identity;
 
 namespace App.Service.Concrete
 {
@@ -13,17 +14,27 @@ namespace App.Service.Concrete
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
+        private readonly UserManager<User> _userManager;
 
-        public NewsCommentManager(IUnitOfWork unitOfWork, IMapper mapper)
+		public NewsCommentManager(IUnitOfWork unitOfWork, IMapper mapper, UserManager<User> userManager)
+		{
+			_unitOfWork = unitOfWork;
+			_mapper = mapper;
+			_userManager = userManager;
+		}
+
+		public async Task<IDataResult<NewsCommentDto>> AddAsync(NewsCommentAddDto commentAddDto)
         {
-            _unitOfWork = unitOfWork;
-            _mapper = mapper;
-        }
-
-        public async Task<IDataResult<NewsCommentDto>> AddAsync(NewsCommentAddDto commentAddDto)
-        {         
-            var comment = _mapper.Map<NewsComment>(commentAddDto);
+            var news = await _unitOfWork.News.GetAsync(n => n.Id == commentAddDto.NewsId);
+			if (news == null)
+			{
+				return new DataResult<NewsCommentDto>(ResultStatus.Error, "Böyle bir haber bulunamadı.",null);
+			}
+			var comment = _mapper.Map<NewsComment>(commentAddDto);
             comment.CreatedByName = commentAddDto.Name;
+            comment.User=await _userManager.FindByEmailAsync(commentAddDto.Email);
+            comment.UserId = commentAddDto.UserId;
+            comment.CreatedAt = DateTime.Now;
             var addedComment = await _unitOfWork.NewsComments.AddAsync(comment);
             await _unitOfWork.SaveAsync();
             return new DataResult<NewsCommentDto>(ResultStatus.Success, "Yorumunuz başarıyla gönderilmiştir. Onaylandıktan sonra sisteme eklenecektir.", new NewsCommentDto
@@ -76,6 +87,22 @@ namespace App.Service.Concrete
         {
             
             var comments = await _unitOfWork.NewsComments.GetAllAsync(null,nc=>nc.News);
+            if (comments.Count > -1)
+            {
+                return new DataResult<NewsCommentListDto>(ResultStatus.Success, new NewsCommentListDto
+                {
+                    NewsComments = comments,
+                });
+            }
+            return new DataResult<NewsCommentListDto>(ResultStatus.Error, "Yorumlar bulunamadı.", new NewsCommentListDto
+            {
+                NewsComments = null,
+            });
+        }
+        public async Task<IDataResult<NewsCommentListDto>> GetNewsCommentsAsync(int newsId)
+        {
+
+            var comments = await _unitOfWork.NewsComments.GetAllAsync(c=>c.NewsId== newsId&&!c.IsDeleted && c.IsActive, nc => nc.News);
             if (comments.Count > -1)
             {
                 return new DataResult<NewsCommentListDto>(ResultStatus.Success, new NewsCommentListDto

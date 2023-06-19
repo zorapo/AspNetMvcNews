@@ -1,23 +1,28 @@
-﻿<div class="leave-comment-area clearfix">
+﻿@model NewsCommentAddDto
+<div class="leave-comment-area clearfix">
 	<div class="comment-form">
 		<div class="gazette-heading">
 			<h4 class="font-bold">leave a comment</h4>
 		</div>
 		<div id="result"></div>
+		@*<div class="text-success">@TempData["Message"]</div>*@
 		<!-- Comment Form -->
-		<form asp-action="Add" asp-controller="Comment" method="post">
-			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
-			<input asp-for="@Model" type="hidden" />
+		<form asp-action="Add" asp-controller="Comment" id="form-comment-add" method="post">
+			<div asp-validation-summary="ModelOnly" class="text-danger" id="validation-summary"></div>
+			<input name="IsValid" type="hidden" value="@ViewData.ModelState.IsValid.ToString()" />
+
+			<input asp-for="@Model.NewsId" type="hidden" />
+			<input asp-for="@Model.UserId" type="hidden" />
 			<div class="form-group">
-				<input type="text" class="form-control" asp-for="@Model.NewsComments.Name" placeholder="Enter Your Full Name">
+				<input type="text" class="form-control" asp-for="@Model.Name" placeholder="Enter Your Full Name">
 			</div>
 			<div class="form-group">
-				<input type="email" class="form-control" asp-for="@Model.NewsComments.Email" placeholder="Email">
+				<input type="email" class="form-control" asp-for="@Model.Email" placeholder="Email">
 			</div>
 			<div class="form-group">
-				<textarea class="form-control" name="message" asp-for="@Model.NewsComments.Comment" cols="30" rows="10" placeholder="Message"></textarea>
+				<textarea class="form-control" asp-for="@Model.Comment" cols="30" rows="10" placeholder="Message"></textarea>
 			</div>
-			<button type="submit" id="commentSave" class="btn leave-comment-btn">SUBMIT <i class="fa fa-angle-right ml-2"></i></button>
+			<button type="button" id="btnSave" class="btn leave-comment-btn">SUBMIT <i class="fa fa-angle-right ml-2"></i></button>
 		</form>
 	</div>
 </div>

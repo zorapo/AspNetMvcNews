@@ -8,6 +8,7 @@ namespace App.Service.Abstract
         Task<IDataResult<NewsCommentDto>> GetAsync(int commentId);
 
         Task<IDataResult<NewsCommentListDto>> GetAllAsync();
+        Task<IDataResult<NewsCommentListDto>> GetNewsCommentsAsync(int newsId);
         Task<IDataResult<NewsCommentUpdateDto>> GetCommentUpdateDtoAsync(int commentId);
         Task<IDataResult<NewsCommentListDto>> GetAllByNonDeletedAndActiveAsync();
         Task<IDataResult<NewsCommentDto>> AddAsync(NewsCommentAddDto commentAddDto);

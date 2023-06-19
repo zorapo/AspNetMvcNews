@@ -1,34 +1,47 @@
-﻿using App.Entities.Dtos.NewsCommentDtos;
+﻿using App.Entities.Concrete;
+using App.Entities.Dtos.NewsCommentDtos;
 using App.Service.Abstract;
 using App.Shared.Utilities.Results.ComplexTypes;
-using App.Shared.Utilities.Results.Concrete;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace App.Web.Mvc.Controllers
 {
 	public class CommentController : Controller
 	{
 		private readonly INewsCommentService _newsCommentService;
+		private readonly UserManager<User> _userManager;
 
-		public CommentController(INewsCommentService newsCommentService)
+		public CommentController(INewsCommentService newsCommentService, UserManager<User> userManager)
 		{
 			_newsCommentService = newsCommentService;
+			_userManager = userManager;
 		}
 
-        [Route("CommentAdd"), HttpPost]
-        public async Task<IActionResult> Add(NewsCommentAddDto newsCommentAddDto)
+		[HttpPost]
+		public async Task<JsonResult> Add(NewsCommentAddDto newsCommentAddDto)
 		{
-			if (ModelState.IsValid)
+
+			var user = await _userManager.FindByEmailAsync(newsCommentAddDto.Email);		
+			newsCommentAddDto.UserId = user.Id;
+			var result = await _newsCommentService.AddAsync(newsCommentAddDto);
+			if (result.ResultStatus == ResultStatus.Success)
 			{
-				var result = await _newsCommentService.AddAsync(newsCommentAddDto);
-				if (result.ResultStatus == ResultStatus.Success)
+				var addedComment = JsonSerializer.Serialize(result.Data, new JsonSerializerOptions
 				{
-					return RedirectToAction("Detail","News",newsCommentAddDto.NewsId);
-				}
-				ModelState.AddModelError("", result.Message);
-			}
-			ModelState.AddModelError("", "Bir hata oluştu.Yorumunuz gönderilemedi.");
-			return RedirectToAction("Detail", "News", newsCommentAddDto.NewsId);
+					ReferenceHandler = ReferenceHandler.Preserve
+				});
+				return Json(addedComment);
+			
+			}			
+			ModelState.AddModelError("", result.Message);
+			var CommentError = JsonSerializer.Serialize(newsCommentAddDto, new JsonSerializerOptions
+			{
+				ReferenceHandler = ReferenceHandler.Preserve
+			});
+			return Json(CommentError);
 		}
 	}
 }

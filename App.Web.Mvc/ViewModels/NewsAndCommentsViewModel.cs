@@ -7,5 +7,7 @@ namespace App.Web.Mvc.ViewModels
 	{
         public NewsDto NewsDto { get; set; }
         public NewsCommentAddDto NewsComments { get; set; }
+        public NewsCommentListDto NewsCommentsList { get; set; }
+
     }
 }

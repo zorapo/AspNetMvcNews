@@ -11,20 +11,20 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace App.Web.Mvc.Areas.Admin.Controllers
 {
-    [Area("Admin")]
+	[Area("Admin")]
     [Authorize(Roles = "Admin")]
 
     public class NewsController : Controller
     {
         private readonly INewsService _newsService;
         private readonly ICategoryService _categoryService;
-        private readonly INewsCommentService _newsCommentService;
+   
         private readonly UserManager<User> _userManager;
         private readonly IImageHelper _imageHelper;
         private readonly IMapper _mapper;
         private readonly ILogger<NewsController> _logger;
 
-		public NewsController(INewsService newsService, ILogger<NewsController> logger, ICategoryService categoryService, IImageHelper imageHelper, UserManager<User> userManager, IMapper mapper, INewsCommentService newsCommentService)
+		public NewsController(INewsService newsService, ILogger<NewsController> logger, ICategoryService categoryService, IImageHelper imageHelper, UserManager<User> userManager, IMapper mapper)
 		{
 			_newsService = newsService;
 			_logger = logger;
@@ -32,7 +32,7 @@ namespace App.Web.Mvc.Areas.Admin.Controllers
 			_imageHelper = imageHelper;
 			_userManager = userManager;
 			_mapper = mapper;
-			_newsCommentService = newsCommentService;
+	
 		}
 		public async Task<IActionResult> Index()
         {

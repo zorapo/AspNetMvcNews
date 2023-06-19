@@ -26,5 +26,6 @@ namespace App.Entities.Dtos.NewsCommentDtos
 
 		[Required]
 		public int NewsId { get; set; }
+		public string UserId { get; set; }
 	}
 }

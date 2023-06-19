@@ -7,6 +7,7 @@ using App.Web.Mvc.Helpers.Abstract;
 using App.Web.Mvc.Helpers.Concrete;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
