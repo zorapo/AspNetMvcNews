@@ -7,6 +7,8 @@
 				<div class="breacumb-content d-flex align-items-center justify-content-between">
 					<!-- Post Tag -->
 					<div class="gazette-post-tag">
+						@*@foreach (var item in Model.News.ToList().Take(1))
+						{*@
 						<a href="#">@Model.Category.Name</a>
 					</div>
 					<p class="editorial-post-date text-dark mb-0">@DateTime.Now.ToShortDateString() </p>
@@ -53,7 +55,7 @@ else
 							<!-- Reading More -->
 							<div class="post-continue-reading-share mt-30">
 								<div class="post-continue-btn">
-									<a href="/News/Detail/@item.Id" class="font-pt">DAHA FAZLASI... <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+									<a href="News/Details/@Url.FriendlyUrl(item.Title)/@item.Id" class="font-pt">Continue Reading <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
 								</div>
 							</div>
 						</div>
@@ -83,7 +85,7 @@ else
 							<!-- Reading More -->
 							<div class="post-continue-reading-share mt-30">
 								<div class="post-continue-btn">
-									<a href="#" class="font-pt">Continue Reading <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+									<a href="News/Details/@Url.FriendlyUrl(item.Title)/@item.Id" class="font-pt">Continue Reading <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
 								</div>
 							</div>
 						</div>
@@ -116,7 +118,7 @@ else
 								<!-- Reading More -->
 								<div class="post-continue-reading-share mt-15">
 									<div class="post-continue-btn">
-										<a href="#" class="font-pt">Continue Reading <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+										<a href="News/Details/@Url.FriendlyUrl(item.Title)/@item.Id" class="font-pt">Continue Reading <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
 									</div>
 								</div>
 							</div>
