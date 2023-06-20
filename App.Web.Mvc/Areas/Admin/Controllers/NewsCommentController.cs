@@ -5,12 +5,14 @@ using App.Service.Abstract;
 using App.Shared.Utilities.Results.ComplexTypes;
 using App.Web.Mvc.Helpers.Abstract;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace App.Web.Mvc.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "Admin")]
     public class NewsCommentController : Controller
     {
 

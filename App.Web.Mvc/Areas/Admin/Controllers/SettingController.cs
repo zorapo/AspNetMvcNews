@@ -24,7 +24,7 @@ namespace App.Web.Mvc.Areas.Admin.Controllers
             _imageHelper = imageHelper;
             _signInManager = signInManager;
         }
-
+    
         public async Task<IActionResult> UserChangeDetails()
 		{
 			var user= await _userManager.GetUserAsync(HttpContext.User);
@@ -58,7 +58,7 @@ namespace App.Web.Mvc.Areas.Admin.Controllers
                     {
                         await _imageHelper.ImageDelete(oldUserPicture, "user");
                     }
-                    TempData.Add("Message", "Bilgileriniz başarıyla güncellenmiştir.");
+                    TempData.Add("Message", "Your user settings has been successfully updated.");
                     return View(userUpdateDto);
 
                 }
@@ -94,7 +94,7 @@ namespace App.Web.Mvc.Areas.Admin.Controllers
                         await _signInManager.SignOutAsync(); // Kullanıcıyı çıkış yaptırıp yeni şifre ile girmesini sağlamalıyız					
 						await _signInManager.PasswordSignInAsync(user, userPasswordChangeDto.NewPassword, true, false);
 						await _userManager.UpdateSecurityStampAsync(user);
-						TempData.Add("Message", "Şifreniz başarıyla değiştirilmiştir.");
+						TempData.Add("Message", "Your password has been changed successfully.");
                         return View();
                     }
                      foreach(var error in result.Errors)
@@ -104,7 +104,7 @@ namespace App.Web.Mvc.Areas.Admin.Controllers
                      return View(userPasswordChangeDto);
                     
                 }
-                ModelState.AddModelError("", "Lütfen girdiğiniz şifreyi kontrol ediniz.");
+                ModelState.AddModelError("", "Please check your password.");
                 return View(userPasswordChangeDto);
             }
             return View(userPasswordChangeDto);

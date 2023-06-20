@@ -41,7 +41,7 @@ namespace App.Web.Mvc.Controllers
 
 				if (result.Succeeded) //IdentityResult kütüphaneden geliyor
 				{
-					TempData.Add("Message", "Your registration has been successfully.");
+					TempData.Add("MessageAuth", "Your registration has been successfully.");
 
 					return View(nameof(Register));
 				}
@@ -125,7 +125,7 @@ namespace App.Web.Mvc.Controllers
 				token = passwordResetToken
 			}, HttpContext.Request.Scheme);
 			await _sendEmailService.SendResetPasswordEmail(passwordResetLink, user.Email);
-			TempData["Message"] = "Şifre yenileme linki e-posta adresinize gönderilmiştir.";
+			TempData["MessageAuth"] = "Şifre yenileme linki e-posta adresinize gönderilmiştir.";
 
 			return RedirectToAction(nameof(ForgotPassword));
 		}
@@ -153,7 +153,7 @@ namespace App.Web.Mvc.Controllers
 				var result = await _userManager.ResetPasswordAsync(user, resetPasswordDto.TokenCode, resetPasswordDto.Password);
 				if (result.Succeeded)
 				{
-					TempData["Message"] = "Şifreniz başarıyla yenilenmiştir.";
+					TempData["MessageAuth"] = "Şifreniz başarıyla yenilenmiştir.";
 					await _userManager.UpdateSecurityStampAsync(user);
 					return View(resetPasswordDto);
 				}

@@ -72,6 +72,11 @@ app.MapControllerRoute(
 	name: "admin",
 	pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
 		  );
+//app.MapControllerRoute(
+//    name: "settings",
+//    pattern: "{PasswordChage}",
+//    defaults: new { area="Admin", controller = "Setting", action = "PasswordChange" });
+         
 app.MapControllerRoute(
 	name: "news",
 	pattern: "{News}/{Details}/{title}/{id}",

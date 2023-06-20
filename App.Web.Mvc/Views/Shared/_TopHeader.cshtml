@@ -37,16 +37,17 @@
                                         {
                                             
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                            <a class="dropdown-item" asp-area="Admin" asp-action="Index" asp-controller="Home">Admin Paneli</a>
-                                            <a class="dropdown-item" asp-action="Logout" asp-controller="Auth" asp-area="">Çıkış Yap</a>
+                                            <a class="dropdown-item" asp-area="Admin" asp-action="Index" asp-controller="Home">Admin Panel</a>
+                                            <a class="dropdown-item" asp-action="Logout" asp-controller="Auth" asp-area="">Log out</a>
                                             </div>
                                         }
                                         else
                                         {
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                <a class="dropdown-item" asp-area="Admin" asp-action="PasswordChange" asp-controller="Setting">Şifre Değiştir</a>
-                                                <a class="dropdown-item" asp-area="Admin" asp-action="UserChangeDetails" asp-controller="Setting">Ayarlar</a>
-                                                <a class="dropdown-item" asp-action="Logout" asp-controller="Auth" asp-area="">Çıkış Yap</a>
+                                                <a class="dropdown-item" asp-area="Admin" asp-action="UserIndex" asp-controller="Home">User Panel</a>
+                                                <a class="dropdown-item" asp-area="Admin" asp-action="PasswordChange" asp-controller="Setting">Password Change</a>
+                                                <a class="dropdown-item" asp-area="Admin" asp-action="UserChangeDetails" asp-controller="Setting">User Settings</a>
+                                                <a class="dropdown-item" asp-action="Logout" asp-controller="Auth" asp-area="">Log out</a>
                                             </div>
                                         }
                                     </li>

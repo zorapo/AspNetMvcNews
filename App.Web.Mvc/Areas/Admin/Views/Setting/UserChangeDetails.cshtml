@@ -7,7 +7,7 @@
 <link href="~/admintema/css/styles.css" rel="stylesheet" />
 <link href="~/admintema/css/site.css" rel="stylesheet" />
 <div class="container">
-
+   
 <div class="row">
 	<div class="col-lg-6 offset-lg-3">
 		<div class="card mt-5">
@@ -15,8 +15,13 @@
 				<h4 class="text-center"><span class="fas fa-edit"></span> Profil Düzenle</h4>
 			</div>
 			<div class="card-body">
-                <form asp-action="UserDetails" method="post" enctype="multipart/form-data">
-                   
+                <form asp-action="UserChangeDetails" method="post" enctype="multipart/form-data">
+                        @if (TempData["Message"] != null)
+                        {
+                            <div class="alert alert-success mt-2" role="alert">
+                                @TempData["Message"] Please click to go to the <a asp-area="" asp-controller="Home" asp-action="Index">home page</a>
+                            </div>
+                        }
                     <div asp-validation-summary="ModelOnly" class="text-danger" id="validation-summary"></div>
                     <input asp-for="Id" type="hidden" />
                     <div class="form-group">
@@ -40,7 +45,7 @@
                         <span class="text-danger" asp-validation-for="PictureFile"></span>
                     </div>
                     <div class="form-group mt-5">
-                        <a class="btn btn-danger " asp-area="Admin" asp-action="Index" asp-controller="Home"><span class="fas fa-times"></span> İptal</a>
+                        <a class="btn btn-danger " asp-area="Admin" asp-action="UserIndex" asp-controller="Home"><span class="fas fa-times"></span> İptal</a>
                         <button type="submit" class="btn btn-primary"><span class="fas fa-times"></span> Kaydet</button>
                     </div>
                 </form>
