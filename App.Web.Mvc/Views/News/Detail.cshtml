@@ -3,6 +3,22 @@
 
 <section class="single-post-area">
 	<!-- Single Post Title -->
+	@if (TempData["MessageSuccess"] != null)
+	{
+	
+			<div class="alert alert-success col-6 offset-3 text-center" role="alert">
+				@TempData["MessageSuccess"]
+				
+			</div>
+	}
+	else if (TempData["MessageError"] != null)
+	{
+		<div class="alert alert-danger col-6 offset-3 text-center" role="alert">
+			@TempData["MessageError"]
+
+		</div>
+	}
+
 	<div class="single-post-title bg-img background-overlay" style="background-image: url(/tema/img/bg-img/1.jpg);">
 		<div class="container h-100">
 			<div class="row h-100 align-items-end">
@@ -62,7 +78,7 @@
 		<div class="row justify-content-center">
 			<div class="col-12 col-md-8">
 				<!-- Comment Area Start -->
-				<div id ="comments" class="comment_area section_padding_50 clearfix">
+				<div id="comments" class="comment_area section_padding_50 clearfix">
 					<div class="gazette-heading">
 						<h4 class="font-bold">Discussion</h4>
 					</div>
@@ -118,20 +134,19 @@
 				</div>
 				@if (SignInManager.IsSignedIn(User))
 				{
-					
-				@*<partial name="~/Views/Comment/_CommentAdd.cshtml" model="new NewsCommentAddDto{NewsId=Model.NewsDto.News.Id}"/>*@
+
+					@*<partial name="~/Views/Comment/_CommentAdd.cshtml" model="new NewsCommentAddDto{NewsId=Model.NewsDto.News.Id}"/>*@
 
 					<div class="leave-comment-area clearfix">
 						<div class="comment-form">
 							<div class="gazette-heading">
 								<h4 class="font-bold">leave a comment</h4>
 							</div>
-							<div id="result" class="text-success">@TempData["Message"]</div>
-							@*<div class="text-success">@TempData["Message"]</div>*@
+							@*	<div id="result" class="text-success">@TempData["Message"]</div>*@		
 							<!-- Comment Form -->
 							<form asp-action="Detail" asp-controller="News" asp-route-id="@Model.NewsDto.News.Id" id="form-comment-add" method="post">
 								<div asp-validation-summary="ModelOnly" class="text-danger" id="validation-summary"></div>
-						
+
 
 								<input asp-for="@Model.NewsDto.News.Id" type="hidden" />
 								<input asp-for="@Model.NewsComments.UserId" type="hidden" />
@@ -162,7 +177,7 @@
 							<div class="gazette-heading">
 								<h4 class="font-bold">leave a comment</h4>
 								<h5 class="mb-5 text-danger">Please <a asp-controller="Auth" asp-action="Login" class="btn btn-primary">Login</a> to leave a comment</h5>
-							</div>				
+							</div>
 							<!-- Comment Form -->
 							<form asp-action="Detail" asp-controller="News" asp-route-id="@Model.NewsDto.News.Id" id="form-comment-add" method="post" class="disabled">
 								<div asp-validation-summary="ModelOnly" class="text-danger" id="validation-summary"></div>
@@ -194,6 +209,53 @@
 		</div>
 	</div>
 </section>
+
+@section Scripts{
+	<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+	<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}
+@*@section Scripts{
+
+	<script>
+		$(document).ready(function () {
+			$(function () {
+				$(document).on('click', '#btnSave',
+					function (event) {
+						event.preventDefault();
+						const form = $('#form-comment-add');
+						const url = '/News/Detail/';
+						const dataToSend = form.serialize();
+						$.post(url, dataToSend).done(function () {
+							Swal.fire(
+								'!',
+								`adlı kategori başarıyla silinmiştir.`,
+								'success'
+							)
+												else {
+								Swal.fire({
+									icon: 'error',
+									title: 'Başarısız işlem!',
+									text: `Başarısız`
+								})
+							}
+											///*	$("#result").fadeIn(data);*/
+											//toastr(commentAddData);
+
+								)
+					};
+			}
+			);
+		});
+
+				});
+
+
+
+	</script>
+}*@
+
+
+
 @*@section Scripts {
-	<script src="~/tema/js/newsDetail.js" type="text/javascript"></script> 
+	<script src="~/tema/js/newsDetail.js" type="text/javascript"></script>
 }*@
