@@ -22,9 +22,7 @@
                         <th>Is Active?</th>
                         <th>Is Deleted?</th>
                         <th>Created Date</th>
-                        <th>Created By</th>
-                        <th>Modified Date</th>
-                        <th>Modified By</th>
+                        <th>Created By</th>      
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -34,14 +32,12 @@
                     {
                         <tr >
                             <td>@comment.Id</td>
-                            <td>@comment.News.Title</td>
-                            <td>@(comment.Comment.Length > 80 ? comment.Comment.Substring(0, 80) : comment.Comment)</td>
+                            <td>@(comment.News.Title.ToString().Length > 50 ? comment.News.Title.ToString().Substring(0, 50) + "..." : comment.News.Title)</td>
+                            <td>@(comment.Comment.ToString().Length > 50 ? comment.Comment.ToString().Substring(0, 50) + "..." : comment.Comment)</td>
                             <td>@(comment.IsActive ? "Yes" : "No")</td>
                             <td>@(comment.IsDeleted ? "Yes" : "No")</td>
                             <td>@comment.CreatedAt.GetValueOrDefault().ToShortDateString()</td>
                             <td>@comment.CreatedByName</td>
-                            <td>@comment.UpdatedAt.GetValueOrDefault().ToShortDateString()</td>
-                            <td>@comment.ModifiedByName</td>
                             <td>
                                 @if (!comment.IsActive)
                                 {
@@ -64,8 +60,6 @@
                         <th>Is Deleted?</th>
                         <th>Created Date</th>
                         <th>Created By</th>
-                        <th>Modified Date</th>
-                        <th>Modified By</th>
                         <th>Actions</th>
                     </tr>
                 </tfoot>

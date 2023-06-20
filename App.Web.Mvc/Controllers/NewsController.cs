@@ -60,7 +60,7 @@ namespace App.Web.Mvc.Controllers
 		{
 			var user = await _userManager.FindByEmailAsync(model.NewsComments.Email);
 			model.NewsComments.UserId = user.Id;
-			model.NewsComments.NewsId= id;
+			model.NewsComments.NewsId= id;	
 			var result = await _newsCommentService.AddAsync(model.NewsComments);
 			if (result.ResultStatus == ResultStatus.Success)
 			{

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using App.Entities.Concrete;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace App.Entities.Dtos.NewsCommentDtos
@@ -19,7 +20,11 @@ namespace App.Entities.Dtos.NewsCommentDtos
         [Required]
         public bool IsActive { get; set; }
 
-        [Required]
+		[DisplayName("Is Deleted?")]
+		[Required]
+		public bool IsDeleted { get; set; }
+
+		[Required]
         public int NewsId { get; set; }
-    }
+	}
 }

@@ -1,5 +1,6 @@
 ﻿using App.Entities.Concrete;
 using App.Entities.Dtos.NewsCommentDtos;
+using App.Entities.Dtos.NewsDtos;
 using App.Service.Abstract;
 using App.Shared.Utilities.Results.ComplexTypes;
 using App.Web.Mvc.Helpers.Abstract;
@@ -9,7 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace App.Web.Mvc.Areas.Admin.Controllers
 {
-	[Area("Admin")]
+    [Area("Admin")]
     public class NewsCommentController : Controller
     {
 
@@ -33,25 +34,24 @@ namespace App.Web.Mvc.Areas.Admin.Controllers
             return View(result.Data);
         }
 
-        [HttpPost]
         public async Task<IActionResult> Delete(int commentId)
         {
-            await _newsCommentService.DeleteAsync(commentId, "");
-            return View(nameof(Index));
+            await _newsCommentService.HardDeleteAsync(commentId);
+            return RedirectToAction("Index", "NewsComment");
         }
 
-		public async Task<IActionResult> Approve(int commentId)
-		{
-			await _newsCommentService.ApproveAsync(commentId);
-			return RedirectToAction("Index","NewsComment");
-		}
-		[HttpGet]
+        public async Task<IActionResult> Approve(int commentId)
+        {
+            await _newsCommentService.ApproveAsync(commentId);
+            return RedirectToAction("Index", "NewsComment");
+        }
+        [HttpGet]
         public async Task<IActionResult> Edit(int commentId)
         {
             var result = await _newsCommentService.GetCommentUpdateDtoAsync(commentId);
             if (result.ResultStatus == ResultStatus.Success)
             {
-                return View(result);
+                return View(result.Data);
             }
             else
             {
@@ -61,17 +61,24 @@ namespace App.Web.Mvc.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(NewsCommentUpdateDto commentUpdateDto)
         {
-            var model = await _newsCommentService.UpdateAsync(commentUpdateDto, "");
+
+            var model = await _newsCommentService.UpdateAsync(commentUpdateDto, "Admin");
+            if (model.ResultStatus == ResultStatus.Success)
+            {
+
+                return RedirectToAction(nameof(Index));
+
+            }
+            return View(commentUpdateDto);
+
+        }
+        public async Task<IActionResult> Detail(int commentId)
+        {
+            var model = await _newsCommentService.GetAsync(commentId);
 
             return View(model);
         }
-		public async Task<IActionResult> Detail(int commentId)
-		{
-            var model = await _newsCommentService.GetAsync(commentId);
-
-			return View(model);
-		}
 
 
-	}
+    }
 }

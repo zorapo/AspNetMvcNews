@@ -7,6 +7,7 @@ using App.Shared.Utilities.Results.ComplexTypes;
 using App.Shared.Utilities.Results.Concrete;
 using AutoMapper;
 using Microsoft.AspNetCore.Identity;
+using System.Runtime.InteropServices;
 
 namespace App.Service.Concrete
 {
@@ -34,6 +35,7 @@ namespace App.Service.Concrete
             comment.CreatedByName = commentAddDto.Name;
             comment.User=await _userManager.FindByEmailAsync(commentAddDto.Email);
             comment.UserId = commentAddDto.UserId;
+            comment.NewsId = commentAddDto.NewsId;
             comment.CreatedAt = DateTime.Now;
             var addedComment = await _unitOfWork.NewsComments.AddAsync(comment);
             await _unitOfWork.SaveAsync();
@@ -153,7 +155,7 @@ namespace App.Service.Concrete
             var comment = await _unitOfWork.NewsComments.GetAsync(c => c.Id == commentId);
             if (comment != null)
             {
-                await _unitOfWork.NewsComments.DeleteAsync(comment);
+				await _unitOfWork.NewsComments.DeleteAsync(comment);
                 await _unitOfWork.SaveAsync();
                 return new Result(ResultStatus.Success, "Yorum başarıyla veritabanından silinmiştir.");
             }
@@ -161,12 +163,18 @@ namespace App.Service.Concrete
         }
         public async Task<IDataResult<NewsCommentUpdateDto>> GetCommentUpdateDtoAsync(int commentId)
         {
-            var result = await _unitOfWork.NewsComments.AnyAsync(c => c.Id == commentId);
-            if (result)
+                var comment = await _unitOfWork.NewsComments.GetAsync(c => c.Id == commentId,c=>c.News);
+            if (comment!=null)
             {
-                var comment = await _unitOfWork.NewsComments.GetAsync(c => c.Id == commentId);
-                var commentUpdateDto = _mapper.Map<NewsCommentUpdateDto>(comment);
-                return new DataResult<NewsCommentUpdateDto>(ResultStatus.Success, commentUpdateDto);
+                return new DataResult<NewsCommentUpdateDto>(ResultStatus.Success, new NewsCommentUpdateDto
+                {
+                    Id = comment.Id,
+                    NewsId = comment.NewsId,
+                    IsActive = comment.IsActive,
+                    IsDeleted = comment.IsDeleted,
+                    Comment=comment.Comment
+
+                });
             }
             else
             {
@@ -176,11 +184,11 @@ namespace App.Service.Concrete
 
         public async Task<IDataResult<NewsCommentDto>> UpdateAsync(NewsCommentUpdateDto commentUpdateDto, string modifiedByName)
         {
-            var oldComment = await _unitOfWork.NewsComments.GetAsync(c => c.Id == commentUpdateDto.Id);
+            var oldComment = await _unitOfWork.NewsComments.GetAsync(c => c.Id == commentUpdateDto.Id,c=>c.News);
             var comment = _mapper.Map<NewsCommentUpdateDto, NewsComment>(commentUpdateDto, oldComment);
             comment.ModifiedByName = modifiedByName;
+            comment.UpdatedAt = DateTime.Now;         
             var updatedComment = await _unitOfWork.NewsComments.UpdateAsync(comment);
-            updatedComment.News = await _unitOfWork.News.GetAsync(n => n.Id == updatedComment.NewsId);
             await _unitOfWork.SaveAsync();
             return new DataResult<NewsCommentDto>(ResultStatus.Success, "Yorum başarıyla güncellenmiştir.", new NewsCommentDto
             {
