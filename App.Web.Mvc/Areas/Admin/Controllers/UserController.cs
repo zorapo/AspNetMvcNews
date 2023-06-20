@@ -5,7 +5,9 @@ using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+
 
 namespace App.Web.Mvc.Areas.Admin.Controllers
 {
@@ -17,11 +19,13 @@ namespace App.Web.Mvc.Areas.Admin.Controllers
 		private readonly UserManager<User> _userManager;
 		private readonly IImageHelper _imageHelper;
 		private readonly IMapper _mapper;
-		public UserController(UserManager<User> userManager, IImageHelper imageHelper, IMapper mapper)
+		private readonly RoleManager<Role> _roleManager;
+		public UserController(UserManager<User> userManager, IImageHelper imageHelper, IMapper mapper, RoleManager<Role> roleManager)
 		{
 			_userManager = userManager;
 			_imageHelper = imageHelper;
 			_mapper = mapper;
+			_roleManager = roleManager;
 		}
 
 		public async Task<IActionResult> Index()
@@ -120,7 +124,9 @@ namespace App.Web.Mvc.Areas.Admin.Controllers
 		{
 			var user = await _userManager.FindByIdAsync(userId);
 			var userUpdateDto = _mapper.Map<UserUpdateDto>(user);
-
+			var roles = _roleManager.Roles.ToList();
+			userUpdateDto.Roles= roles;
+			ViewBag.Roles = new SelectList(userUpdateDto.Roles, "Id", "Name"); 
 			return View(userUpdateDto);
 		}
 
@@ -164,6 +170,15 @@ namespace App.Web.Mvc.Areas.Admin.Controllers
 				}
 			}
 			return View(userUpdateDto);
+
+
+			//public IActionResult RolAta(string RoleManager roleMranager)
+			//{
+			//	var roles =  _roleManager.Roles.ToList();
+			//	var userUpdateDto = _mapper.Map<UserUpdateDto>(roles);
+
+			//	return View();
+			//}
 		}
 
 	}
