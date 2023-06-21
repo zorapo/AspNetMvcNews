@@ -17,8 +17,7 @@ namespace App.Web.Mvc.Areas.Admin.Controllers
 	public class NewsController : Controller
     {
         private readonly INewsService _newsService;
-        private readonly ICategoryService _categoryService;
-   
+        private readonly ICategoryService _categoryService;  
         private readonly UserManager<User> _userManager;
         private readonly IImageHelper _imageHelper;
         private readonly IMapper _mapper;

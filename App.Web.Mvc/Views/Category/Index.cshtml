@@ -44,14 +44,14 @@ else
 							<div class="gazette-post-tag">
 								<a href="#">@item.Category.Name</a>
 							</div>
-							<h2 class="font-pt">@item.Title</h2>
+							<h2 class="font-pt">@(item.Title.ToString().Length > 40 ? item.Title.ToString().Substring(0, 40) + "..." : item.Title)</h2>
 							<p class="gazette-post-date">@item.CreatedAt.GetValueOrDefault().ToShortDateString()</p>
 							<!-- Post Thumbnail -->
 							<div class="blog-post-thumbnail my-5" style="max-width: 350px; max-height:205px">
 								<img class="img-fluid" src="~/img/news/@item.ImagePath" alt="post-thumb" width="100%" height="100%">
 							</div>
 							<!-- Post Excerpt -->
-							<p>@(item.SubTitle.ToString().Length > 150 ? item.SubTitle.ToString().Substring(0, 150) + "..." : item.SubTitle)</p>
+							<p>@(item.SubTitle.ToString().Length > 50 ? item.SubTitle.ToString().Substring(0, 50) + "..." : item.SubTitle)</p>
 							<!-- Reading More -->
 							<div class="post-continue-reading-share mt-30">
 								<div class="post-continue-btn">
@@ -74,14 +74,14 @@ else
 							<div class="gazette-post-tag">
 								<a href="#">@item.Category.Name</a>
 							</div>
-							<h2><a href="" class="font-pt">@item.Title</a></h2>
+							<h2 class="font-pt">@(item.Title.ToString().Length > 40 ? item.Title.ToString().Substring(0, 40) + "..." : item.Title)</h2>
 							<p class="gazette-post-date">@item.CreatedAt.GetValueOrDefault().ToShortDateString()</p>
 							<!-- Post Thumbnail -->
 							<div class="blog-post-thumbnail my-5" style="max-width: 540px; max-height:315px">
 								<img class="img-fluid" src="~/img/news/@item.ImagePath" alt="post-thumb" width="100%" height="100%">
 							</div>
 							<!-- Post Excerpt -->
-							<p>@item.SubTitle</p>
+							<p>@(item.SubTitle.ToString().Length > 50 ? item.SubTitle.ToString().Substring(0, 50) + "..." : item.SubTitle)</p>
 							<!-- Reading More -->
 							<div class="post-continue-reading-share mt-30">
 								<div class="post-continue-btn">
@@ -111,10 +111,10 @@ else
 								<div class="gazette-post-tag">
 									<a href="#">@item.Category.Name</a>
 								</div>
-								<h2><a href="" class="font-pt">@item.Title</a></h2>
+								<h2 class="font-pt">@(item.Title.ToString().Length > 40 ? item.Title.ToString().Substring(0, 40) + "..." : item.Title)</h2>
 								<p class="gazette-post-date mb-15">@item.CreatedAt.GetValueOrDefault().ToShortDateString()</p>
 								<!-- Post Excerpt -->
-								<p>@item.SubTitle</p>
+								<p>@(item.SubTitle.ToString().Length > 50 ? item.SubTitle.ToString().Substring(0, 50) + "..." : item.SubTitle)</p>
 								<!-- Reading More -->
 								<div class="post-continue-reading-share mt-15">
 									<div class="post-continue-btn">

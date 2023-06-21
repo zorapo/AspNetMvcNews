@@ -137,7 +137,7 @@ namespace App.Web.Mvc.Controllers
 			return token == null ? View("ErrorPage") : View(new ResetPasswordDto
 			{
 				TokenCode = token,
-			});  //View(Error) olarak değiştirilecek!!!
+			});  
 
 		}
 

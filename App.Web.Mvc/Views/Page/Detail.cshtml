@@ -1,12 +1,13 @@
-﻿@model DataResult<PageListDto>
+﻿@model UserAndPagesViewModel
+@inject UserManager<User> UserManager
 
 <div class="breadcumb-area section_padding_50">
     <div class="container">
         <div class="row">
             <div class="col-12">
                 <div class="breacumb-content d-flex align-items-center justify-content-between">
-                    <h3 class="font-pt mb-0">@Model.Data.Pages.Where(t=>t.Id==1).First().Title</h3>
-                    <p class="editorial-post-date text-dark mb-0">@Model.Data.Pages.Where(t=>t.Id==1).First().CreatedAt</p>
+                    <h3 class="font-pt mb-0">@Model.PageListDto.Pages.Where(t=>t.Id==1).First().Title</h3>
+                    <p class="editorial-post-date text-dark mb-0">@Model.PageListDto.Pages.Where(t=>t.Id==1).First().CreatedAt</p>
                 </div>
             </div>
         </div>
@@ -20,10 +21,10 @@
                     <h3 class="font-pt mb-30">Sort History</h3>
                 </div>
                 <div class="col-12 col-md-6">
-                    <p>@Model.Data.Pages.Where(t=>t.Id==1).First().Content</p>
+                    <p>@Model.PageListDto.Pages.Where(t=>t.Id==1).First().Content</p>
                 </div>
                 <div class="col-12 col-md-6">
-                    <p>@Model.Data.Pages.Where(t=>t.Id==1).First().Content_One</p>
+                    <p>@Model.PageListDto.Pages.Where(t=>t.Id==1).First().Content_One</p>
                 </div>
             </div>
         </div>
@@ -39,19 +40,18 @@
 
             <div class="row">
                 <div class="col-12 col-sm-6 col-md-3">
-                    <div class="single-team-area">
-                        @foreach (var item in Model.Data.Pages)
+                    <div class="single-team-area text-nowrap">
+                        @foreach (var item in Model.User)
                         {
-                            <img src="../Tema/img/bg-img/t1.jpg" alt="">
-                        }
-
+                            <img src="~/img/user/@item.Picture" alt="">
                         <div class="team-member-data">
-                            <h4 class="font-pt">Jane Doe</h4>
-                            <div class="team-member-designation-social-info d-flex align-items-cente justify-content-between">
-                                <h5 class="font-pt mb-0">Editor</h5>
+                            <h4 class="font-pt">@item.UserName</h4>
+                            <div class="team-member-designation-social-info d-flex align-items-center justify-content-between">
+                                <h5 class="font-pt mb-0"></h5>
 
                             </div>
                         </div>
+                        }
                     </div>
                 </div>
                 @*               <div class="col-12 col-sm-6 col-md-3">
