@@ -25,8 +25,6 @@ namespace App.Entities.Dtos.UserDtos
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
-        public IList<Role> Roles { get; set; }
-
         [DisplayName("Resim Ekle")]
         public IFormFile? PictureFile { get; set; }
 

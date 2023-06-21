@@ -33,16 +33,18 @@ namespace App.Web.Mvc.Controllers
 		[HttpPost]
 		public async Task<IActionResult> Register(UserRegisterDto userRegisterDto)
 		{
+			
 			if (ModelState.IsValid)
 			{
 				var newUser = _mapper.Map<User>(userRegisterDto);
-				newUser.Picture = "default.jpg";
+				newUser.Picture = "default.jpg";	
+				
 				var result = await _userManager.CreateAsync(newUser, userRegisterDto.Password); //Şifreyi hashleme işlemi yapıyor
 
 				if (result.Succeeded) //IdentityResult kütüphaneden geliyor
 				{
-					TempData.Add("MessageAuth", "Your registration has been successfully.");
-
+					await _userManager.AddToRoleAsync(newUser, "User");
+					TempData.Add("MessageAuth", "Your registration has been successfully.");					
 					return View(nameof(Register));
 				}
 				else

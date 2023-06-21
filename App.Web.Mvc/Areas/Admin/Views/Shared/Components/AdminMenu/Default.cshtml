@@ -5,9 +5,13 @@
 		<div class="sb-sidenav-menu">
 			<div class="nav">
 
-				@if (Model.Roles.Any(t => t.Equals("Admin")))
+				@if (Model.Roles.Any(t => t.Equals("Admin")) || Model.Roles.Any(t=>t.Equals("Moderator")))
 				{
 				<div class="sb-sidenav-menu-heading">MENÜ</div>
+					<a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">
+						<div class="sb-nav-link-icon"><i class="fas fa-arrow-circle-left"></i></div>
+						Home Page
+					</a>
 					<a class="nav-link" asp-area="Admin" asp-controller="Home" asp-action="Index">
 						<div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
 						Dashboard

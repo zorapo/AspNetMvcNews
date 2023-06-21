@@ -1,4 +1,6 @@
-﻿@model UserListDto;
+﻿@using Microsoft.AspNetCore.Identity;
+@inject UserManager<User> UserManager
+@model UserListDto;
 @{
 
 	ViewBag.Title = "Kullanıcılar";
@@ -26,7 +28,7 @@
 						<th>ID</th>
 						<th>Kullanıcı Adı</th>
 						<th>E-Posta Adresi</th>
-						
+						<th>Roller</th>
 						<th>Resim</th>
 						<th>Oluşturma Tarihi</th>
 						<th>İşlemler</th>
@@ -40,15 +42,22 @@
 							<td>@user.Id</td>
 							<td>@user.UserName</td>
 							<td>@user.Email</td>
-							
+							<td>
+								<ul>
 
+									@foreach (var item in UserManager.GetRolesAsync(user).Result)
+									{
+										<li><span class="badge badge-pill badge-secondary">@item</span></li>
+									}
+								</ul>
+
+							</td>
 							<td><img src="~/img/user/@user.Picture" class="image-style" /></td>
 							<td>@user.CreatedAt.GetValueOrDefault().ToShortDateString()</td>
-							<td class="text-center">						    						
+							<td class="text-center">
 								<a class="btn btn-primary btn-sm" asp-area="Admin" asp-controller="User" asp-action="Edit" asp-route-userId="@user.Id"><span class="fas fa-edit"></span></a>
 								<a class="btn btn-danger btn-sm" asp-area="Admin" asp-controller="User" asp-action="Delete" asp-route-userId="@user.Id"><span class="fas fa-minus-circle"></span></a>
-
-								@*<a class="btn btn-primary btn-sm" asp-area="Admin" asp-controller="User" asp-action="RolAta" asp-route-userId="@user.Id"><span class="fas fa-edit"></span></a>*@
+								<a class="btn btn-success btn-sm" asp-area="Admin" asp-controller="Role" asp-action="AssignUserRole" asp-route-id="@user.Id"><span class="fas fa-briefcase"></span></a>
 
 							</td>
 						</tr>
@@ -59,7 +68,7 @@
 						<th>ID</th>
 						<th>Kullanıcı Adı</th>
 						<th>E-Posta Adresi</th>
-						
+						<th>Roller</th>
 						<th>Resim</th>
 						<th>Oluşturma Tarihi</th>
 						<th>İşlemler</th>

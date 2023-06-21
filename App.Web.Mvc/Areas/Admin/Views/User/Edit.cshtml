@@ -18,12 +18,7 @@
             <label asp-for="Email"></label>
             <input class="form-control" type="email" asp-for="Email" placeholder="Lütfen e-posta adresi giriniz." />
             <span class="text-danger" asp-validation-for="Email"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="@Model.Roles" class="control-label">Rol</label>
-            <select asp-for="@Model.Roles" class="form-control" asp-items="ViewBag.Roles"></select>
-            <span asp-validation-for="@Model.Roles" class="text-danger"></span>
-        </div>
+        </div>    
         <div class="form-group">
             <label asp-for="Picture"></label>
             <input asp-for="Picture" type="hidden"/> 

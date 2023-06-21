@@ -29,6 +29,10 @@ namespace App.Service.Extensions
                 options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(3);
                 options.Lockout.MaxFailedAccessAttempts = 3;
             }).AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders();
+            services.Configure<SecurityStampValidatorOptions>(options =>
+            {
+                options.ValidationInterval = TimeSpan.FromMinutes(20); //Önemli değişikliklerden sonra kullanıcı 20 dk sonra çıkarılıp tekrar giriş yapması sağlansın.
+            });
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<ICategoryService, CategoryManager>();
             services.AddScoped<INewsService, NewsManager>();

@@ -33,7 +33,7 @@
                                         <button class="nav-link btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             Merhaba @UserManager.GetUserName(User)
                                         </button>
-                                        @if (User.IsInRole("Admin"))
+                                        @if (User.IsInRole("Admin") || User.IsInRole("Moderator"))
                                         {
                                             
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">

@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace App.Web.Mvc.Areas.Admin.Controllers
 {
 	[Area("Admin")]
-	[Authorize(Roles = "Admin")]
+	[Authorize(Roles = "Admin,Moderator")]
 	public class PageController : Controller
 	{
 		private readonly IPageService _pageService;
