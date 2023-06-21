@@ -10,7 +10,6 @@
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pages</a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" asp-action="Index" asp-controller="Home">Home Page</a>
                     <a class="dropdown-item" asp-action="Detail" asp-controller="Page">About Us</a>
                     <a class="dropdown-item" asp-action="Contact" asp-controller="Page">Contact</a>
                 </div>
@@ -22,24 +21,7 @@
                     <a class="nav-link" asp-action="Index" asp-controller="Category" asp-route-categoryId="@item.Id">@item.Name</a>
                 </li>
             }
-            @*     <li class="nav-item">
-            <a class="nav-link" href="#">Politics</a>
-            </li>
-            <li class="nav-item">
-            <a class="nav-link" href="#">Lifestyle</a>
-            </li>
-            <li class="nav-item">
-            <a class="nav-link" href="#">Travel</a>
-            </li>
-            <li class="nav-item">
-            <a class="nav-link" href="#">Health</a>
-            </li>
-            <li class="nav-item">
-            <a class="nav-link" href="#">Entertainment</a>
-            </li>
-            <li class="nav-item">
-            <a class="nav-link" href="#">sport</a>
-            </li>*@
+
         </ul>
         <!-- Search Form -->
         <div class="header-search-form mr-auto">
