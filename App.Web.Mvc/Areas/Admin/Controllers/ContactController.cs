@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace App.Web.Mvc.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin,Editor")]
     public class ContactController : Controller
     {
         
