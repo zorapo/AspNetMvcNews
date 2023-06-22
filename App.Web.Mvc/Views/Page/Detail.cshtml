@@ -39,11 +39,11 @@
             </div>
 
             <div class="row">
-                <div class="col-12 col-sm-6 col-md-3">
-                    <div class="single-team-area text-nowrap">
                         @foreach (var item in Model.User)
                         {
-                            <img src="~/img/user/@item.Picture" alt="">
+                <div class="col-12 col-sm-6 col-md-3">
+                    <div class="single-team-area text-nowrap">
+                            <img src="~/img/user/@item.Picture" style="max-witdh:60px;max-height:80px" alt="">
                         <div class="team-member-data">
                             <h4 class="font-pt">@item.UserName</h4>
                             <div class="team-member-designation-social-info d-flex align-items-center justify-content-between">
@@ -51,63 +51,13 @@
 
                             </div>
                         </div>
-                        }
                     </div>
-                </div>
-                @*               <div class="col-12 col-sm-6 col-md-3">
-                <div class="single-team-area">
-                <img src="../Tema/img/bg-img/t2.jpg" alt="">
-                <div class="team-member-data">
-                <h4 class="font-pt">Jane Doe</h4>
-                <div class="team-member-designation-social-info d-flex align-items-cente justify-content-between">
-                <h5 class="font-pt mb-0">Editor</h5>
-                <div class="social-info">
-                <a href="#"><i class="fa fa-pinterest"></i></a>
-                <a href="#"><i class="fa fa-linkedin"></i></a>
-                <a href="#"><i class="fa fa-facebook"></i></a>
-                <a href="#"><i class="fa fa-twitter"></i></a>
-                </div>
-                </div>
-                </div>
-                </div>
-                </div>*@
-                @*                <div class="col-12 col-sm-6 col-md-3">
-                <div class="single-team-area">
-                <img src="../Tema/img/bg-img/t3.jpg" alt="">
-                <div class="team-member-data">
-                <h4 class="font-pt">Jane Doe</h4>
-                <div class="team-member-designation-social-info d-flex align-items-cente justify-content-between">
-                <h5 class="font-pt mb-0">Editor</h5>
-                <div class="social-info">
-                <a href="#"><i class="fa fa-pinterest"></i></a>
-                <a href="#"><i class="fa fa-linkedin"></i></a>
-                <a href="#"><i class="fa fa-facebook"></i></a>
-                <a href="#"><i class="fa fa-twitter"></i></a>
-                </div>
-                </div>
-                </div>
-                </div>
-                </div>*@
-                @* <div class="col-12 col-sm-6 col-md-3">
-                <div class="single-team-area">
-                <img src="../Tema/img/bg-img/t4.jpg" alt="">
-                <div class="team-member-data">
-                <h4 class="font-pt">Jane Doe</h4>
-                <div class="team-member-designation-social-info d-flex align-items-cente justify-content-between">
-                <h5 class="font-pt mb-0">Editor</h5>
-                <div class="social-info">
-                <a href="#"><i class="fa fa-pinterest"></i></a>
-                <a href="#"><i class="fa fa-linkedin"></i></a>
-                <a href="#"><i class="fa fa-facebook"></i></a>
-                <a href="#"><i class="fa fa-twitter"></i></a>
-                </div>
-                </div>
-                </div>
-                </div>*@
+                </div>    
+                        }
             </div>
         </div>
     </div>
-    </div>
+   
 </section>
 
 <section class="gazette-cta-area bg-img background-overlay section_padding_100" style="background-image: url(~/Tema/img/blog-img/cta.jpg);">
