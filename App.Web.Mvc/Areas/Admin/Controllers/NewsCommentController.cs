@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace App.Web.Mvc.Areas.Admin.Controllers
 {
     [Area("Admin")]
-	[Authorize(Roles = "Admin,Moderator")]
+	[Authorize(Roles = "Admin,Editor")]
 	public class NewsCommentController : Controller
     {
 

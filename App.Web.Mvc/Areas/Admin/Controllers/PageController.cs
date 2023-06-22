@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace App.Web.Mvc.Areas.Admin.Controllers
 {
 	[Area("Admin")]
-	[Authorize(Roles = "Admin,Moderator")]
+	[Authorize(Roles = "Admin,Editor")]
 	public class PageController : Controller
 	{
 		private readonly IPageService _pageService;
@@ -43,7 +43,6 @@ namespace App.Web.Mvc.Areas.Admin.Controllers
 			{
 				return RedirectToAction(nameof(Index));
 			}
-			//page.ImagePath = await _imageHelper.ImageUpload("pages", page.ImageFile, "page");
 			await _pageService.AddAsync(page);
 			return RedirectToAction(nameof(Index));
 
@@ -58,7 +57,6 @@ namespace App.Web.Mvc.Areas.Admin.Controllers
 		{
 			if (page == null || !ModelState.IsValid)
 				return RedirectToAction(nameof(Index));
-			//page.ImagePath = await _imageHelper.ImageUpload("pages",page.ImageFile, "page");
 			await _pageService.UpdateAsync(page);
 			return RedirectToAction(nameof(Index));
 

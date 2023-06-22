@@ -22,7 +22,7 @@ namespace App.Web.Mvc.Controllers
         public async Task<IActionResult> Detail()
 		{
 			var page = await _pageService.GetAllPageAsync();
-			var userList = await _userManager.Users.ToListAsync();
+			var userList = await _userManager.GetUsersInRoleAsync("Admin");
 
 			return View(new UserAndPagesViewModel
 			{
