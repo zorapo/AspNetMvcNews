@@ -16,16 +16,23 @@ namespace App.Entities.Concrete
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
+
         [DisplayName("Name")]
         [StringLength(30)]
         [Column(TypeName = "NVARCHAR")]
         public string? Name { get; set; }
 
         [DisplayName("Email")]
-        [Column(TypeName = "NVARCHAR(MAX)")]
+		[MaxLength(100)]
+		[MinLength(10)]
+		[DataType(DataType.EmailAddress)]
+		[Column(TypeName = "NVARCHAR(MAX)")]
         public string? Email { get; set; }
+
         [DisplayName("Message")]
-        [Column(TypeName = "NVARCHAR(MAX)")]
+		[MaxLength(1000)]
+		[MinLength(10)]
+		[Column(TypeName = "NVARCHAR(MAX)")]
         public string? Message { get; set; }
         public bool IsActive { get; set; }
         public DateTime? CreatedAt { get; set; }

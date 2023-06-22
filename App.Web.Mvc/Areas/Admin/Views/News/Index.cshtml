@@ -8,16 +8,18 @@
 	<li class="breadcrumb-item active"><a asp-area="Admin" asp-controller="News" asp-action="Index">News</a></li>
 </ol>
 
-<h1>Index</h1>
-
-<p>
-	<a asp-action="Create">Haber Ekle</a>
-</p>
-<div class="card mb-4 mt-2">
-
+<div id="modalPlaceHolder" aria-hidden="true"></div>
+<div class="card mt-2">
+	<div class="card-header">
+		<i class="fas fa-table mr-1"></i>
+		Heberler
+	</div>
 	<div class="card-body">
 
 		<div class="table-responsive">
+			<div>
+				<a asp-controller="News" asp-action="Create" class="btn btn-success">Haber Ekle</a>
+			</div>
 			<table class="table table-bordered display" id="newsTable" width="100%" cellspacing="0">
 				<thead>
 					<tr>

@@ -3,16 +3,17 @@
 @{
 	Layout = "_LayoutAdmin";
 }
-<h1>Index</h1>
-
-<p>
-	<a asp-action="Create">Create New</a>
-</p>
-<div class="card mb-4 mt-2">
-
+<div class="card mt-2">
+	<div class="card-header">
+		<i class="fas fa-table mr-1"></i>
+		Sayfalar
+	</div>
 	<div class="card-body">
 
 		<div class="table-responsive">
+			<div>
+				<a asp-area="Admin" asp-controller="Page" asp-action="Create" class="btn btn-success mb-3">Sayfa Ekle</a>
+			</div>
 			<table class="table table-bordered display" id="newsTable" width="100%" cellspacing="0">
 				<thead>
 					<tr>
@@ -28,10 +29,7 @@
 						</th>
 						<th>
 							@Html.DisplayNameFor(model => model.Data.Pages.First().Content_Two)
-						</th>
-						<th>
-							@Html.DisplayNameFor(model => model.Data.Pages.First().ImagePath)
-						</th>
+						</th>		
 						<th>
 							@Html.DisplayNameFor(model => model.Data.Pages.First().CreatedAt)
 						</th>
@@ -64,15 +62,14 @@
 								@Html.DisplayFor(modelItem => item.Title)
 							</td>
 							<td>
-								@item.Content.Substring(0,100) ...
+								@(item.Content.ToString().Length > 50 ? item.Content.ToString().Substring(0, 50) + "..." : item.Content)
 							</td>
 							<td>
-								@Html.DisplayFor(modelItem => item.Content_One)
+								@(item.Content_One.ToString().Length > 50 ? item.Content_One.ToString().Substring(0, 50) + "..." : item.Content_One)
 							</td>
 							<td>
-								@Html.DisplayFor(modelItem => item.Content_Two)
+								@item.Content_Two
 							</td>
-							<td><img src="~/img/page/@item.ImagePath" style="max-height:50px;max-width:50px;" /></td>
 							<td>
 								@Html.DisplayFor(modelItem => item.CreatedAt)
 							</td>
@@ -88,8 +85,8 @@
 								@Html.DisplayFor(modelItem => item.ModifiedByName)
 							</td>
 							<td class="text-nowrap">
-								<a class="btn btn-primary btn-sm " asp-controller="Page" asp-action="Edit" asp-route-Id="@item.Id"><span class="fas fa-edit"></span></a>
-								<a class="btn btn-danger btn-sm " asp-controller="Page" asp-action="Delete" asp-route-id="@item.Id"><span class="fas fa-minus-circle"></span></a>
+								<a class="btn btn-primary btn-sm " asp-area="Admin" asp-controller="Page" asp-action="Edit" asp-route-id="@item.Id"><span class="fas fa-edit"></span></a>
+								<a class="btn btn-danger btn-sm " asp-area="Admin" asp-controller="Page" asp-action="Delete" asp-route-id="@item.Id"><span class="fas fa-minus-circle"></span></a>
 							</td>
 						</tr>
 					}
@@ -109,10 +106,7 @@
 						</th>
 						<th>
 							@Html.DisplayNameFor(model => model.Data.Pages.First().Content_Two)
-						</th>
-						<th>
-							@Html.DisplayNameFor(model => model.Data.Pages.First().ImagePath)
-						</th>
+						</th>			
 						<th>
 							@Html.DisplayNameFor(model => model.Data.Pages.First().CreatedAt)
 						</th>
@@ -139,6 +133,3 @@
 		</div>
 	</div>
 </div>
-@section Scripts{
-	<script src="~/admintema/js/newsIndex.js" type="text/javascript"></script>
-}

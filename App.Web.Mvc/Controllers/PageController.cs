@@ -39,11 +39,13 @@ namespace App.Web.Mvc.Controllers
         {
             if (page == null || !ModelState.IsValid)
             {
-                return RedirectToAction(nameof(Index));
+				ModelState.AddModelError("", "Hata Oluştu! Mesajınız Gönderilemedi!");
+				return RedirectToAction(nameof(Index));
             }
 
             await _contactService.AddContactAsync(page);
-            return View();
+			TempData["Mesaj"] = "<div class = 'alert alert-success'>Mesajınız Gönderildi. Teşekkürler...</div>";
+			return View();
 
         }
     }

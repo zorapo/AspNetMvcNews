@@ -5,7 +5,7 @@
 			<div class="col-12">
 				<div class="breacumb-content d-flex align-items-center justify-content-between">
 					<h3 class="font-pt mb-0">Contact</h3>
-					<p class="editorial-post-date text-dark mb-0">28 November 2017</p>
+					<p class="editorial-post-date text-dark mb-0">@DateTime.Now.ToShortDateString()</p>
 				</div>
 			</div>
 		</div>
@@ -19,16 +19,21 @@
 				<div class="gazette-heading">
 					<h4 class="font-bold">Message</h4>
 				</div>
+				@Html.Raw(TempData["Mesaj"])
 				<!-- Contact Form -->
-				<form asp-controller="page" asp-action="contact" method="post">
+				<form asp-controller="Page" asp-action="Contact" method="post">
 					<div class="form-group">
 						<input asp-for="Name" type="text" class="form-control" id="contact-name" placeholder="Enter Your Full Name">
+						<span asp-validation-for="Name" class="text-danger"></span>
 					</div>
 					<div class="form-group">
 						<input asp-for=Email type="email" class="form-control" id="contact-email" placeholder="Email">
+						<span asp-validation-for="Email" class="text-danger"></span>
 					</div>
 					<div class="form-group">
 						<textarea asp-for="Message" class="form-control" name="message" id="message" cols="30" rows="10" placeholder="Message"></textarea>
+						<span asp-validation-for="Message" class="text-danger"></span>
+
 					</div>
 					<button type="submit" class="btn contact-btn">SUBMIT <i class="fa fa-angle-right ml-2"></i></button>
 				</form>
@@ -64,3 +69,7 @@
 		</div>
 	</div>
 </div>
+@section Scripts{
+	<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+	<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}

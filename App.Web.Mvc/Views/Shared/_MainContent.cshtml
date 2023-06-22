@@ -22,22 +22,17 @@
 						<!-- Post Excerpt -->
 						<p>@(item.SubTitle.ToString().Length > 300 ? item.SubTitle.ToString().Substring(0, 300) + "..." : item.SubTitle) </p>
 						<!-- Reading More -->
-						@*	@{
-					Dictionary<string, string> parms = new Dictionary<string, string>();
-
-					parms.Add("What's behind the world obsession with gems?", "~/ tema / img / blog - img / 1.jpg");
-
-					}*@
+					
 						<div class="post-continue-reading-share d-sm-flex align-items-center justify-content-between mt-30">
 							<div class="post-continue-btn">
 								<a href="News/Details/@Url.FriendlyUrl(item.Title)/@item.Id" class="font-pt">Continue Reading <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
 							</div>
-							<div class="post-share-btn-group">
+							@*<div class="post-share-btn-group">
 								<a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
 								<a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
 								<a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
 								<a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-							</div>
+							</div>*@
 						</div>
 					}
 				</div>
@@ -110,7 +105,7 @@
 						{
 							<div class="single-dont-miss-post d-flex mb-30">
 								<div class="dont-miss-post-thumb">
-									<img src="~/img/news/@item.ImagePath" style="height:80% ;width:200%" alt="">
+									<img src="~/img/news/@item.ImagePath" style="height:80% ;width:100%" alt="">
 								</div>
 								<div class="dont-miss-post-content">
 									<a href="News/Details/@Url.FriendlyUrl(item.Title)/@item.Id" class="font-pt"><h5>@item.Title</h5></a>

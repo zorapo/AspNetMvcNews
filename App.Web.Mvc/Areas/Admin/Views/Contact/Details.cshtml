@@ -2,10 +2,10 @@
 @{
     ViewData["Title"] = "Edit";
 }
-<h4>Sayfayı Düzenle</h4>
+<h1 class="text-center">İletişim Detay</h1>
 <hr />
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-4 offset-4">
         <form asp-action="Edit" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="@Model.Id" />
@@ -47,16 +47,13 @@
             </div>
 
             <div class="form-group">
-
+                <a class="btn btn-danger" asp-action="Index">İptal</a>
                 <input type="submit" value="Kaydet" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
 
 
 

@@ -50,7 +50,8 @@ namespace App.Web.Mvc.Controllers
 			return View(new NewsAndCommentsViewModel
 			{
 				NewsDto = news.Data,
-				NewsCommentsList = comments.Data
+				NewsCommentsList = comments.Data,
+				
 			});
 
 		}

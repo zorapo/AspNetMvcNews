@@ -2,74 +2,74 @@
 @inject UserManager<User> UserManager
 
 <div class="breadcumb-area section_padding_50">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <div class="breacumb-content d-flex align-items-center justify-content-between">
-                    <h3 class="font-pt mb-0">@Model.PageListDto.Pages.Where(t=>t.Id==1).First().Title</h3>
-                    <p class="editorial-post-date text-dark mb-0">@Model.PageListDto.Pages.Where(t=>t.Id==1).First().CreatedAt</p>
-                </div>
-            </div>
-        </div>
-    </div>
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+				<div class="breacumb-content d-flex align-items-center justify-content-between">
+					<h3 class="font-pt mb-0">@Model.PageListDto.Pages.Where(t=>t.Id==1).First().Title</h3>
+					<p class="editorial-post-date text-dark mb-0">@Model.PageListDto.Pages.Where(t=>t.Id==1).First().CreatedAt</p>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
 <section class="gazette-about-us-area section_padding_100_70">
-    <div class="about-us-content">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <h3 class="font-pt mb-30">Sort History</h3>
-                </div>
-                <div class="col-12 col-md-6">
-                    <p>@Model.PageListDto.Pages.Where(t=>t.Id==1).First().Content</p>
-                </div>
-                <div class="col-12 col-md-6">
-                    <p>@Model.PageListDto.Pages.Where(t=>t.Id==1).First().Content_One</p>
-                </div>
-            </div>
-        </div>
-    </div>
+	<div class="about-us-content">
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+					<h3 class="font-pt mb-30">Sort History</h3>
+				</div>
+				<div class="col-12 col-md-6">
+					<p>@Model.PageListDto.Pages.Where(t=>t.Id==1).First().Content</p>
+				</div>
+				<div class="col-12 col-md-6">
+					<p>@Model.PageListDto.Pages.Where(t=>t.Id==1).First().Content_One</p>
+				</div>
+			</div>
+		</div>
+	</div>
 
-    <div class="team-area mt-50">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <h3 class="font-pt mb-50">Our Team</h3>
-                </div>
-            </div>
+	<div class="team-area mt-50">
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+					<h3 class="font-pt mb-50">Our Team</h3>
+				</div>
+			</div>
 
-            <div class="row">
-                        @foreach (var item in Model.User)
-                        {
-                <div class="col-12 col-sm-6 col-md-3">
-                    <div class="single-team-area text-nowrap">
-                            <img src="~/img/user/@item.Picture" style="max-witdh:60px;max-height:80px" alt="">
-                        <div class="team-member-data">
-                            <h4 class="font-pt">@item.UserName</h4>
-                            <div class="team-member-designation-social-info d-flex align-items-center justify-content-between">
-                                <h5 class="font-pt mb-0"></h5>
+			<div class="row">
+				@foreach (var item in Model.User)
+				{
+					<div class="col-12 col-sm-6 col-md-3">
+						<div class="single-team-area text-center text-nowrap">
+							<img src="~/img/user/@item.Picture" style="max-witdh:50px;max-height:120px" alt="">
+							<div class="team-member-data">
+								<h4 class="font-pt">@item.UserName</h4>
+								<div class="team-member-designation-social-info d-flex align-items-center justify-content-between">
+									<h5 class="font-pt mb-0"></h5>
 
-                            </div>
-                        </div>
-                    </div>
-                </div>    
-                        }
-            </div>
-        </div>
-    </div>
-   
+								</div>
+							</div>
+						</div>
+					</div>
+				}
+			</div>
+		</div>
+	</div>
+
 </section>
 
 <section class="gazette-cta-area bg-img background-overlay section_padding_100" style="background-image: url(~/Tema/img/blog-img/cta.jpg);">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-12 col-md-8">
-                <div class="cta-content text-center">
-                    <h2 class="font-pt">Join Our Team</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis porttitor, elit vel pellentesque faucibus, massa ligula rutrum erat, id aliquam orci urna in ante.</p>
-                    <a href="/Page/Contact" class="btn gazette-btn font-pt">Contact Us <i class="fa fa-angle-right"></i></a>
-                </div>
-            </div>
-        </div>
-    </div>
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-12 col-md-8">
+				<div class="cta-content text-center">
+					<h2 class="font-pt">Join Our Team</h2>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis porttitor, elit vel pellentesque faucibus, massa ligula rutrum erat, id aliquam orci urna in ante.</p>
+					<a href="/Page/Contact" class="btn gazette-btn font-pt">Contact Us <i class="fa fa-angle-right"></i></a>
+				</div>
+			</div>
+		</div>
+	</div>
 </section>

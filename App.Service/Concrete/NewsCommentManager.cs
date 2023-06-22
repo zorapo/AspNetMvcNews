@@ -104,7 +104,7 @@ namespace App.Service.Concrete
         public async Task<IDataResult<NewsCommentListDto>> GetNewsCommentsAsync(int newsId)
         {
 
-            var comments = await _unitOfWork.NewsComments.GetAllAsync(c=>c.NewsId== newsId&&!c.IsDeleted && c.IsActive, nc => nc.News);
+            var comments = await _unitOfWork.NewsComments.GetAllAsync(c=>c.NewsId== newsId&&!c.IsDeleted && c.IsActive, nc => nc.News,nc=>nc.User);
             if (comments.Count > -1)
             {
                 return new DataResult<NewsCommentListDto>(ResultStatus.Success, new NewsCommentListDto

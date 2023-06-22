@@ -3,16 +3,18 @@
 @{
 	Layout = "_LayoutAdmin";
 }
-<h1>Index</h1>
 
-<p>
-	<a asp-action="Create">Create New</a>
-</p>
-<div class="card mb-4 mt-2">
 
+<div id="modalPlaceHolder" aria-hidden="true"></div>
+<div class="card mt-2">
+	<div class="card-header">
+		<i class="fas fa-table mr-1"></i>
+		İletişim
+	</div>
 	<div class="card-body">
 
 		<div class="table-responsive">
+			
 			<table class="table table-bordered display" id="newsTable" width="100%" cellspacing="0">
 				<thead>
 					<tr>
@@ -53,8 +55,8 @@
 							<td>@(item.IsActive ? "Yes" : "No")</td>
 
 							<td class="text-nowrap">
-								<a class="btn btn-primary btn-sm " asp-controller="Contact" asp-action="Edit" asp-route-Id="@item.Id"><span class="fas fa-edit"></span></a>
-								<a class="btn btn-danger btn-sm " asp-controller="Contact" asp-action="Detail" asp-route-id="@item.Id"><span class="fas fa-minus-circle"></span></a>
+								<a class="btn btn-primary btn-sm " asp-area="Admin" asp-controller="Contact" asp-action="Edit" asp-route-id="@item.Id"><span class="fas fa-edit"></span></a>
+								<a class="btn btn-success btn-sm " asp-controller="Contact" asp-action="Details" asp-route-contactId="@item.Id"><span class="fas fa-newspaper"></span></a>
 							</td>
 						</tr>
 					}
@@ -85,6 +87,3 @@
 		</div>
 	</div>
 </div>
-@section Scripts{
-	<script src="~/admintema/js/newsIndex.js" type="text/javascript"></script>
-}

@@ -4,20 +4,14 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Düzenle</h1>
+<h1 class="text-center">Sayfa Düzenle</h1>
 
-<h4>News</h4>
 <hr />
 <div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit" enctype="multipart/form-data">
+    <div class="col-md-4 offset-4">
+        <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="@Model.Id" />
-            @*   <div class="form-group">
-            <label asp-for="@Model.News.UserId" class="control-label"></label>
-            <select asp-for="@Model.News.UserId" class="form-control" asp-items="ViewBag.UserId"></select>
-            <span asp-validation-for="@Model.News.UserId" class="text-danger"></span>
-            </div>*@
+            <input type="hidden" asp-for="@Model.Id" />        
             <div class="form-group">
                 <label asp-for="@Model.Title" class="control-label">Başlık</label>
                 <input asp-for="@Model.Title" class="form-control" />
@@ -37,22 +31,7 @@
                 <label asp-for="@Model.Content_Two" class="control-label">İçerik</label>
                 <textarea asp-for="@Model.Content_Two" class="form-control" rows="5"></textarea>
                 <span asp-validation-for="@Model.Content_One" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="@Model.ImagePath" class="control-label"></label>
-                <input asp-for="@Model.ImagePath" class="form-control" type="file" />
-                <span asp-validation-for="ImagePath" class="text-danger"></span>
-                @if (!string.IsNullOrWhiteSpace(Model.ImagePath))
-                {
-
-                    <label class="my-3">
-                        <a href="/@Model.ImagePath" data-toggle="lightbox">
-                            <img src="/@Model.ImagePath" alt="@Model.ImagePath" title="@Model.ImagePath" height="50" />
-                        </a>
-                        @Html.CheckBox("resmiSil") Resmi Sil
-                    </label>
-                }
-            </div>
+            </div>   
             <div class="form-group">
                 <label asp-for="@Model.UpdatedAt" class="control-label">Güncellenme Tarihi</label>
                 <input asp-for="@Model.UpdatedAt" class="form-control" />
@@ -71,14 +50,11 @@
 
             <div class="form-group">
 
+                 <a class="btn btn-danger" asp-action="Index">İptal</a>
                 <input type="submit" value="Kaydet" class="btn btn-primary" />
             </div>
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>
 
 

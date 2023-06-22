@@ -1,40 +1,36 @@
 ﻿@model UserAddDto
+		<h1 class="text-center">Kullanıcı Ekle</h1>
+<div class="row">
+	<div class="col-md-4 offset-4 mt-5">
 
-<div class="mt-5">
-  <h5 >Kullanıcı Ekle</h5>
-          
-            
-          
-                <form asp-action="Create" enctype="multipart/form-data">
-                    <input name="IsValid" type="hidden" value="@ViewData.ModelState.IsValid.ToString()" />
-                    <div asp-validation-summary="ModelOnly" class="text-danger" id="validation-summary"></div>
-                    <div class="form-group">
-                        <label asp-for="UserName"></label>
-                        <input class="form-control" asp-for="UserName" placeholder="Lütfen kullanıcı adı giriniz."/>
-                        <span class="text-danger" asp-validation-for="UserName"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Email"></label>
-                        <input class="form-control" type="email" asp-for="Email" placeholder="Lütfen e-posta adresi giriniz." />
-                        <span class="text-danger" asp-validation-for="Email"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Password"></label>
-                        <input class="form-control" type="password" asp-for="Password" placeholder="Lütfen şifre giriniz." />
-                        <span class="text-danger" asp-validation-for="Password"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="PictureFile"></label>
-                        <input class="form-control-file"  type="file" accept="image/*" asp-for="PictureFile" />
-                        <span class="text-danger" asp-validation-for="PictureFile"></span>
-                    </div>
-                    <div class="form-group mt-5">
-                        <a class="btn btn-danger " asp-area="Admin" asp-action="Index" asp-controller="User"><span class="fas fa-times"></span> İptal</a>
-                        <input type="submit" class="btn btn-primary" value="Kaydet"/>
-                    </div>
-                </form>
-           
-          
-       
-    
+		<form asp-action="Create" enctype="multipart/form-data">
+			<input name="IsValid" type="hidden" value="@ViewData.ModelState.IsValid.ToString()" />
+			<div asp-validation-summary="ModelOnly" class="text-danger" id="validation-summary"></div>
+			<div class="form-group">
+				<label asp-for="UserName"></label>
+				<input class="form-control" asp-for="UserName" placeholder="Lütfen kullanıcı adı giriniz." />
+				<span class="text-danger" asp-validation-for="UserName"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="Email"></label>
+				<input class="form-control" type="email" asp-for="Email" placeholder="Lütfen e-posta adresi giriniz." />
+				<span class="text-danger" asp-validation-for="Email"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="Password"></label>
+				<input class="form-control" type="password" asp-for="Password" placeholder="Lütfen şifre giriniz." />
+				<span class="text-danger" asp-validation-for="Password"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="PictureFile"></label>
+				<input class="form-control-file" type="file" accept="image/*" asp-for="PictureFile" />
+				<span class="text-danger" asp-validation-for="PictureFile"></span>
+			</div>
+			<div class="form-group mt-5">
+				<a class="btn btn-danger " asp-area="Admin" asp-action="Index" asp-controller="User"><span class="fas fa-times"></span> İptal</a>
+				<input type="submit" class="btn btn-primary" value="Kaydet" />
+			</div>
+		</form>
+
+	</div>
 </div>
