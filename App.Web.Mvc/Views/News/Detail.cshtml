@@ -1,11 +1,7 @@
 ﻿@inject SignInManager<User> SignInManager
 @inject UserManager<User> UserManager
 @model NewsAndCommentsViewModel
-@{
-	var user = UserManager.FindByNameAsync(SignInManager.Context.User.Identity.Name);
-	var email = SignInManager.UserManager.GetEmailAsync(user.Result).Result;
-	Model.NewsComments.Email=email;
-}
+
 <section class="single-post-area">
 	<!-- Single Post Title -->
 	@if (TempData["MessageSuccess"] != null)
@@ -106,7 +102,11 @@
 				</div>
 				@if (SignInManager.IsSignedIn(User))
 				{
-
+					
+                    	var user = UserManager.FindByNameAsync(SignInManager.Context.User.Identity.Name);
+	                    var email = SignInManager.UserManager.GetEmailAsync(user.Result).Result;
+	                    Model.NewsComments.Email=email;
+                     
 					@*<partial name="~/Views/Comment/_CommentAdd.cshtml" model="new NewsCommentAddDto{NewsId=Model.NewsDto.News.Id}"/>*@
 
 					<div class="leave-comment-area clearfix">
