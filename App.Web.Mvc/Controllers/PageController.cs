@@ -10,12 +10,14 @@ namespace App.Web.Mvc.Controllers
     public class PageController : Controller
     {
 		private readonly IPageService _pageService;
+        private readonly IContactService _contactService;
 		private readonly UserManager<User> _userManager;
 
-        public PageController(IPageService ipageService, UserManager<User> userManager)
+        public PageController(IPageService ipageService, UserManager<User> userManager, IContactService contactService)
         {
             _pageService = ipageService;
             _userManager = userManager;
+            _contactService = contactService;
         }
         public async Task<IActionResult> Detail()
 		{
@@ -32,5 +34,17 @@ namespace App.Web.Mvc.Controllers
 		{
 			return View();
 		}
-	}
+        [HttpPost]
+        public async Task<IActionResult> Contact(Contact page)
+        {
+            if (page == null || !ModelState.IsValid)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+
+            await _contactService.AddContactAsync(page);
+            return View();
+
+        }
+    }
 }

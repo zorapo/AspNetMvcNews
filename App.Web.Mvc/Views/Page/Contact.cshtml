@@ -1,4 +1,5 @@
-﻿<div class="breadcumb-area section_padding_50">
+﻿@model Contact
+<div class="breadcumb-area section_padding_50">
 	<div class="container">
 		<div class="row">
 			<div class="col-12">
@@ -16,18 +17,18 @@
 		<div class="row">
 			<div class="col-12 col-md-8">
 				<div class="gazette-heading">
-					<h4 class="font-bold">address</h4>
+					<h4 class="font-bold">Message</h4>
 				</div>
 				<!-- Contact Form -->
-				<form action="#" method="post">
+				<form asp-controller="page" asp-action="contact" method="post">
 					<div class="form-group">
-						<input type="text" class="form-control" id="contact-name" placeholder="Enter Your Full Name">
+						<input asp-for="Name" type="text" class="form-control" id="contact-name" placeholder="Enter Your Full Name">
 					</div>
 					<div class="form-group">
-						<input type="email" class="form-control" id="contact-email" placeholder="Email">
+						<input asp-for=Email type="email" class="form-control" id="contact-email" placeholder="Email">
 					</div>
 					<div class="form-group">
-						<textarea class="form-control" name="message" id="message" cols="30" rows="10" placeholder="Message"></textarea>
+						<textarea asp-for="Message" class="form-control" name="message" id="message" cols="30" rows="10" placeholder="Message"></textarea>
 					</div>
 					<button type="submit" class="btn contact-btn">SUBMIT <i class="fa fa-angle-right ml-2"></i></button>
 				</form>
@@ -37,13 +38,15 @@
 					<h4 class="font-bold">address</h4>
 				</div>
 				<div class="contact-address-info mb-50">
-					<p>Address: 1635 Franklin Street <br> City / State: Montgomery, AL 36104 <br> Phone: 126-632-2345</p>
+					<p>
+						Address: Kemankeş Karamustafa Paşa Mah. Alipaşa Değirmeni Sok. No:3  <br> City / State: Karaköy / İstanbul, AL 34560 <br> Phone: 850-272-7454
+					</p>
 				</div>
 				<div class="gazette-heading">
 					<h4 class="font-bold">Phone</h4>
 				</div>
 				<div class="contact-address-info">
-					<p>Phone #1: 126-632-2345 <br>Phone #2: 126-632-2345 <br>Phone #3: 126-632-2345 <br>Phone #4: 126-632-2345</p>
+					<p>Phone #1:  850-272-7454 <br>Phone #2:  850-272-7454 <br>Phone #3:  850-272-7454 <br>Phone #4: 850-272-7454</p>
 				</div>
 			</div>
 		</div>

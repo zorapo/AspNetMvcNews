@@ -1,9 +1,10 @@
 ﻿using App.Shared.Entities.Abstract;
 using System.Linq.Expressions;
 
+
 namespace App.Shared.Data.Abstract
 {
-	public interface IEntityRepository<T> where T : class, IEntity, new()
+    public interface IEntityRepository<T> where T : class, IEntity, new()
 	{
 		Task<T> GetAsync(Expression<Func<T, bool>> predicate, params Expression<Func<T, object>>[] includeProperties); //bir parametre de gelebilir, birden çok da gelebilir(include)
 		Task<IList<T>> GetAllAsync(Expression<Func<T, bool>> predicate = null, params Expression<Func<T, object>>[] includeProperties);

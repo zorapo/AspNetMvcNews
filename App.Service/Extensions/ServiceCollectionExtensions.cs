@@ -37,6 +37,7 @@ namespace App.Service.Extensions
             services.AddScoped<ICategoryService, CategoryManager>();
             services.AddScoped<INewsService, NewsManager>();
             services.AddScoped<IPageService, PageManager>();
+            services.AddScoped<IContactService, ContactManager>();
             services.AddScoped<INewsCommentService, NewsCommentManager>();
             services.AddScoped<ISendEmailService, SendEmailService>();
             return services;
