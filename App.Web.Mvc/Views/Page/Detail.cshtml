@@ -7,7 +7,7 @@
 			<div class="col-12">
 				<div class="breacumb-content d-flex align-items-center justify-content-between">
 					<h3 class="font-pt mb-0">@Model.PageListDto.Pages.Where(t=>t.Id==1).First().Title</h3>
-					<p class="editorial-post-date text-dark mb-0">@Model.PageListDto.Pages.Where(t=>t.Id==1).First().CreatedAt</p>
+					<p class="editorial-post-date text-dark mb-0">@Model.PageListDto.Pages.Where(t=>t.Id==1).First().CreatedAt.GetValueOrDefault().ToShortDateString()</p>
 				</div>
 			</div>
 		</div>

@@ -1,5 +1,4 @@
-﻿
-@model NewsListDto
+﻿@model NewsListDto
 <section class="main-content-wrapper section_padding_100">
 	<div class="container">
 		<div class="row">
@@ -11,7 +10,7 @@
 					{
 
 						<div class="gazette-post-tag">
-							<a href="#">@item.Category.Name</a>
+							<a asp-action="Index" asp-controller="Category" asp-route-categoryId="@item.CategoryId">@item.Category.Name</a>
 						</div>
 						<h2 class="font-pt">@item.Title</h2>
 						<p class="gazette-post-date">@item.CreatedAt</p>
@@ -41,7 +40,7 @@
 					<div class="gazette-heading">
 						<h4>today’s most popular</h4>
 					</div>
-					@foreach (var item in Model.News.OrderByDescending(t => t.CreatedAt).Take(2).ToList())
+					@foreach (var item in Model.News.OrderByDescending(t => t.CreatedAt).Skip(28).Take(2).ToList())
 					{
 
 						<!-- Single Today Post -->
@@ -55,7 +54,7 @@
 							<div class="todays-post-content">
 								<!-- Post Tag -->
 								<div class="gazette-post-tag">
-									<a asp-action="Index" asp-controller="Category" asp-route-id="@item.CategoryId">@item.Category.Name</a>
+									<a asp-action="Index" asp-controller="Category" asp-route-categoryId="@item.CategoryId">@item.Category.Name</a>
 								</div>
 								<h3><a href="News/Details/@Url.FriendlyUrl(item.Title)/@item.Id" class="font-pt">@item.Title</a></h3>
 								
@@ -76,14 +75,14 @@
 						<div class="widget-title">
 							<h5>breaking news</h5>
 						</div>
-						@foreach (var item in Model.News.OrderByDescending(t => t.CreatedAt).Take(2).ToList())
+						@foreach (var item in Model.News.OrderByDescending(t => t.CreatedAt).Skip(3).Take(2).ToList())
 						{
 							<!-- Single Breaking News Widget -->
 							<div class="single-breaking-news-widget">
 
 								<a href="/@Url.FriendlyUrl(item.Title)/@item.Id"><img src="~/img/news/@item.ImagePath" style="height:100% ;width:100%" alt=""></a>
 								<div class="breakingnews-title">
-									<a asp-action="Index" asp-controller="Category" asp-route-categoryId="@item.Category.Id"><p>@item.Category.Name</p></a>
+									<a asp-action="Index" asp-controller="Category" asp-route-categoryId="@item.CategoryId"><p>@item.Category.Name</p></a>
 								</div>
 								<div class="breaking-news-heading gradient-background-overlay">
 									<a href="News/Details/@Url.FriendlyUrl(item.Title)/@item.Id" class="font-pt"><h5>@item.Title</h5></a>
@@ -101,7 +100,7 @@
 						<div class="widget-title">
 							<h5>Don't miss</h5>
 						</div>
-						@foreach (var item in Model.News.OrderByDescending(t => t.CreatedAt).Take(3).ToList())
+						@foreach (var item in Model.News.OrderByDescending(t => t.CreatedAt).Skip(14).Take(3).ToList())
 						{
 							<div class="single-dont-miss-post d-flex mb-30">
 								<div class="dont-miss-post-thumb">

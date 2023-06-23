@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="editorial-post-slides owl-carousel">
-                    @foreach (var item in Model.News.OrderByDescending(t => t.CreatedAt).Take(4).ToList())
+                    @foreach (var item in Model.News.OrderByDescending(t => t.CreatedAt).Skip(26).Take(4))
                     {
                         <div class="editorial-post-single-slide">
                             <div class="row">
@@ -17,7 +17,7 @@
                                     <div class="editorial-post-content">
                                         <!-- Post Tag -->
                                         <div class="gazette-post-tag">
-                                            <a asp-action="Index" asp-controller="Category" asp-route-id="@item.CategoryId">@item.Category.Name</a>
+                                            <a asp-action="Index" asp-controller="Category" asp-route-categoryId="@item.CategoryId">@item.Category.Name</a>
                                         </div>
 
                                         <h2><a href="News/Details/@Url.FriendlyUrl(item.Title)/@item.Id" class="font-pt">@item.Title</a></h2>

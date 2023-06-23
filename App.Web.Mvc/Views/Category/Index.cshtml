@@ -7,9 +7,8 @@
 				<div class="breacumb-content d-flex align-items-center justify-content-between">
 					<!-- Post Tag -->
 					<div class="gazette-post-tag">
-						@*@foreach (var item in Model.News.ToList().Take(1))
-						{*@
-						<a href="#">@Model.Category.Name</a>
+					
+						<a asp-action="Index" asp-controller="Category" asp-route-categoryId="@Model.Category.Id">@Model.Category.Name</a>
 					</div>
 					<p class="editorial-post-date text-dark mb-0">@DateTime.Now.ToShortDateString() </p>
 				</div>
@@ -42,7 +41,7 @@ else
 						<div class="gazette-welcome-post">
 							<!-- Post Tag -->
 							<div class="gazette-post-tag">
-								<a href="#">@item.Category.Name</a>
+								<a asp-action="Index" asp-controller="Category" asp-route-categoryId="@Model.Category.Id">@item.Category.Name</a>
 							</div>
 							<h2 class="font-pt">@(item.Title.ToString().Length > 40 ? item.Title.ToString().Substring(0, 40) + "..." : item.Title)</h2>
 							<p class="gazette-post-date">@item.CreatedAt.GetValueOrDefault().ToShortDateString()</p>
@@ -72,7 +71,7 @@ else
 						<div class="gazette-welcome-post">
 							<!-- Post Tag -->
 							<div class="gazette-post-tag">
-								<a href="#">@item.Category.Name</a>
+								<a asp-action="Index" asp-controller="Category" asp-route-categoryId="@Model.Category.Id">@item.Category.Name</a>
 							</div>
 							<h2 class="font-pt">@(item.Title.ToString().Length > 60 ? item.Title.ToString().Substring(0, 60) + "..." : item.Title)</h2>
 							<p class="gazette-post-date">@item.CreatedAt.GetValueOrDefault().ToShortDateString()</p>
@@ -109,7 +108,7 @@ else
 							<div class="welcome-post-contents ml-30">
 								<!-- Post Tag -->
 								<div class="gazette-post-tag">
-									<a href="#">@item.Category.Name</a>
+									<a asp-action="Index" asp-controller="Category" asp-route-categoryId="@Model.Category.Id">@item.Category.Name</a>
 								</div>
 								<h2 class="font-pt">@item.Title</h2>
 								<p class="gazette-post-date mb-15">@item.CreatedAt.GetValueOrDefault().ToShortDateString()</p>
@@ -136,4 +135,9 @@ else
 			</div>
 		</div>
 	</section>
+}
+@section Scripts{
+	<a href="~/lib/jquery/dist/jquery.min.map">~/lib/jquery/dist/jquery.min.map</a>
+	<script src="~/lib/jquery/dist/jquery.min.js"></script>
+	<script src="~/lib/jquery/dist/jquery.js"></script>
 }

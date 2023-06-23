@@ -6,19 +6,19 @@
 
             <div class="col-12 col-md-4">
                 <div class="single-catagory-post-thumb mb-15">
-                    @foreach (var item in Model.News.OrderByDescending(t => t.CreatedAt).Take(1).ToList())
+                    @foreach (var item in Model.News.OrderByDescending(t => t.CreatedAt).Skip(22).Take(1))
                     {
                         <div class="single-catagory-post-thumb mb-15">
-                            <a asp-action="Detail" asp-controller="News" asp-route-id="@item.Id"><img src="~/img/news/@item.ImagePath" style="height:100% ;width:100%" alt=""></a>
+                            <a href="News/Details/@Url.FriendlyUrl(item.Title)/@item.Id"><img src="~/img/news/@item.ImagePath" style="height:100% ;width:100%" alt=""></a>
 
                         </div>
                         <div class="gazette-post-tag">
-                            <a asp-action="Index" asp-controller="Category" asp-route-id="@item.CategoryId">@item.Category.Name</a>
+                            <a asp-action="Index" asp-controller="Category" asp-route-categoryId="@item.CategoryId">@item.Category.Name</a>
                         </div>
                     }
                 </div>
 
-                @foreach (var item in Model.News.OrderByDescending(t => t.CreatedAt).Take(4).ToList())
+                @foreach (var item in Model.News.OrderByDescending(t => t.CreatedAt).Skip(11).Take(4))
                 {
                     <!-- Single Catagory Post -->
                     <div class="gazette-single-catagory-post">
@@ -34,18 +34,18 @@
             </div>
             <div class="col-12 col-md-4">
                 <div class="row">
-                    @foreach (var item in Model.News.OrderBy(t => t.CreatedAt).Take(4).ToList())
+                    @foreach (var item in Model.News.OrderBy(t => t.CreatedAt).Skip(16).Take(4))
                     {
                         <div class="col-12 col-md-6">
                             <!-- Single Catagory Post -->
                             <div class="gazette-single-catagory-post">
                                 <div class="single-catagory-post-thumb mb-15">
 
-                                    <img src="~/img/news/@item.ImagePath" style="height:100% ;width:100%" alt="">
+                                    <a href="News/Details/@Url.FriendlyUrl(item.Title)/@item.Id"><img src="~/img/news/@item.ImagePath" style="height:100% ;width:100%" alt=""></a>
                                 </div>
                                 <!-- Post Tag -->
                                 <div class="gazette-post-tag">
-                                    <a asp-action="Index" asp-controller="Category" asp-route-id="@item.CategoryId">@item.Category.Name</a>
+                                    <a asp-action="Index" asp-controller="Category" asp-route-categoryId="@item.CategoryId">@item.Category.Name</a>
                                 </div>
                                 <h5><a href="News/Details/@Url.FriendlyUrl(item.Title)/@item.Id" class="font-pt">@item.Title</a></h5>
                                 <span>@item.CreatedAt.GetValueOrDefault().ToShortDateString()</span>
@@ -59,19 +59,19 @@
             <div class="col-12 col-md-4">
                 <!-- Single Catagory Post -->
                 <div class="gazette-single-catagory-post">
-                    @foreach (var item in Model.News.OrderBy(t => t.CreatedAt).Take(1).ToList())
+                    @foreach (var item in Model.News.OrderByDescending(t => t.CreatedAt).Skip(3).Take(1))
                     {
                         <div class="single-catagory-post-thumb mb-15">
-                            <a asp-action="Detail" asp-controller="News" asp-route-id="@item.Id"><img src="~/img/news/@item.ImagePath" style="height:100% ;width:100%" alt=""></a>
+                            <a href="News/Details/@Url.FriendlyUrl(item.Title)/@item.Id"><img src="~/img/news/@item.ImagePath" style="height:100% ;width:100%" alt=""></a>
 
                         </div>
                         <div class="gazette-post-tag">
-                            <a asp-action="Index" asp-controller="Category" asp-route-id="@item.CategoryId">@item.Category.Name</a>
+                            <a asp-action="Index" asp-controller="Category" asp-route-categoryId="@item.CategoryId">@item.Category.Name</a>
                         </div>
                     }
 
                     <!-- Post Tag -->
-                    @foreach (var item in Model.News.OrderBy(t => t.CreatedAt).Take(4).ToList())
+                    @foreach (var item in Model.News.OrderBy(t => t.CreatedAt).Skip(6).Take(4))
                     {
                         <div class="gazette-single-catagory-post">
                             <h5><a href="News/Details/@Url.FriendlyUrl(item.Title)/@item.Id" class="font-pt">@item.Title</a></h5>

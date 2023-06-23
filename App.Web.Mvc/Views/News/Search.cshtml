@@ -23,7 +23,7 @@ else
                     <div class="gazette-welcome-post">
                         <!-- Post Tag -->
                         <div class="gazette-post-tag">
-                            <a href="/Category/Index/@item.Category.Id">@item.Category.Name</a>
+                           @item.Category.Name
                         </div>
                         <h2 class="font-pt"><a href="/@Url.FriendlyUrl(item.Title)/@item.Id">@item.Title</a></h2>
                         <p class="gazette-post-date">@String.Format("{0: dd MMMM yyyy}", item.CreatedAt)</p>

@@ -3,7 +3,7 @@
     <div class="container">
         <div class="row">
             <!-- Single Video Post Start -->
-            @foreach (var item in Model.News.OrderByDescending(t => t.CreatedAt).Take(8).ToList())
+            @foreach (var item in Model.News.OrderByDescending(t => t.CreatedAt).Skip(7).Take(8).ToList())
             {
                 <div class="col-12 col-md-3">
                     <div class="single-video-post">
