@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="editorial-post-slides owl-carousel">
-                    @foreach (var item in Model.News.OrderByDescending(t => t.CreatedAt).Skip(26).Take(4))
+                    @foreach (var item in Model.News.OrderByDescending(t => t.CreatedAt).Take(4))
                     {
                         <div class="editorial-post-single-slide">
                             <div class="row">

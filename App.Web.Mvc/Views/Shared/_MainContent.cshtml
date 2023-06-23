@@ -40,7 +40,7 @@
 					<div class="gazette-heading">
 						<h4>today’s most popular</h4>
 					</div>
-					@foreach (var item in Model.News.OrderByDescending(t => t.CreatedAt).Skip(28).Take(2).ToList())
+					@foreach (var item in Model.News.OrderByDescending(t => t.CreatedAt).Skip(30).Take(2).ToList())
 					{
 
 						<!-- Single Today Post -->
@@ -75,7 +75,7 @@
 						<div class="widget-title">
 							<h5>breaking news</h5>
 						</div>
-						@foreach (var item in Model.News.OrderByDescending(t => t.CreatedAt).Skip(3).Take(2).ToList())
+						@foreach (var item in Model.News.OrderByDescending(t => t.CreatedAt).Skip(36).Take(2).ToList())
 						{
 							<!-- Single Breaking News Widget -->
 							<div class="single-breaking-news-widget">
