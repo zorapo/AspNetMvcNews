@@ -1,0 +1,34 @@
+﻿@using App.Shared.Utilities.Results.Abstract;
+@model App.Entities.Concrete.Contact
+@{
+    ViewData["Title"] = "Edit";
+}
+
+
+<h1 class="text-center ">Message Edit</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4 offset-4 ">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="@Model.Id" />        
+            <input type="hidden" asp-for="@Model.Name" />
+            <input type="hidden" asp-for="@Model.Email" />
+            <input type="hidden" asp-for="@Model.Message" />
+            <div class="form-group form-check">
+                <label asp-for="IsActive" class="form-check-label">
+                    <input class="form-check-input" asp-for="@Model.IsActive" /> Aktif Mi?
+                </label>
+            </div>
+            <div class="form-group">
+                  <a class="btn btn-danger"asp-action="Index">İptal</a>
+                <input type="submit" value="Kaydet" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+
+

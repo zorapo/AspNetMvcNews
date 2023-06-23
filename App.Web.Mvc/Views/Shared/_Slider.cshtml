@@ -1,21 +1,19 @@
-﻿@model NewsListDto
+﻿@using App.Web.Mvc.Helpers;
+@model NewsListDto
 <section class="welcome-blog-post-slide owl-carousel">
     <!-- Single Blog Post -->
-    @foreach (var item in Model.News.OrderByDescending(t => t.CreatedAt).Take(4).ToList())
+    @foreach (var item in Model.News.OrderByDescending(t => t.CreatedAt).Skip(9).Take(4).ToList())
     {
         <div class="single-blog-post-slide bg-img background-overlay-5" style="background-image: url(/img/news/@item.ImagePath);">
 
             <!-- Single Blog Post Content -->
             <div class="single-blog-post-content">
                 <div class="tags">
-                    <a asp-action="Index" asp-controller="Category" asp-route-id="@item.CategoryId">@item.Category.Name</a>
+                    <a asp-action="Index" asp-controller="Category" asp-route-categoryId="@item.CategoryId">@item.Category.Name</a>
                 </div>
-                <h3>
-                    <a asp-action="Detail" asp-controller="News" asp-route-id="@item.Id" class="font-pt">@item.Title</a>
-
-                </h3>
+                <h3><a href="News/Details/@Url.FriendlyUrl(item.Title)/@item.Id" class="font-pt">@item.Title</a></h3>
                 <div class="date">
-                    <a href="#">@item.CreatedAt.GetValueOrDefault().ToShortDateString()</a>
+                    @item.CreatedAt.GetValueOrDefault().ToShortDateString()
                 </div>
             </div>
         </div>

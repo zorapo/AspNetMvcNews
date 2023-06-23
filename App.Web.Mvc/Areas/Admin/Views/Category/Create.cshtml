@@ -4,12 +4,12 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Yeni Katagori Oluştur</h1>
+<h1 class="text-center">Yeni Katagori Oluştur</h1>
 
-<h4>News</h4>
+
 <hr />
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-4 offset-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
@@ -30,13 +30,11 @@
             </div>
             
             <div class="form-group">
+                <a class="btn btn-danger"asp-action="Index">İptal</a>
                 <input type="submit" value="Kaydet" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Listeye Geri Dön</a>
-</div>
 

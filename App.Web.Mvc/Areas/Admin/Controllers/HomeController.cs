@@ -2,6 +2,7 @@
 using App.Entities.Dtos;
 using App.Service.Abstract;
 using App.Shared.Utilities.Results.ComplexTypes;
+using App.Web.Mvc.Areas.Admin.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -9,10 +10,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace App.Web.Mvc.Areas.Admin.Controllers
 {
-	[Area("Admin")]
-	[Authorize]
-	public class HomeController : Controller
-	{
+    [Area("Admin")]
+    [Authorize]
+    public class HomeController : Controller
+    {
         private readonly ICategoryService _categoryService;
         private readonly INewsService _newsService;
         private readonly INewsCommentService _newsCommentService;
@@ -27,14 +28,14 @@ namespace App.Web.Mvc.Areas.Admin.Controllers
         }
 
         public async Task<IActionResult> Index()
-		{
-			var categoriesCount=await _categoryService.CountByNonDeletedAsync();
-			var newsCount=await _newsService.CountByNonDeletedAsync();
-			var newsCommentsCount=await _newsCommentService.CountByNonDeletedAsync();
+        {
+            var categoriesCount = await _categoryService.CountByNonDeletedAsync();
+            var newsCount = await _newsService.CountByNonDeletedAsync();
+            var newsCommentsCount = await _newsCommentService.CountByNonDeletedAsync();
             var userCount = await _userManager.Users.CountAsync();
-            var newsList=await _newsService.GetAllAsync();
+            var newsList = await _newsService.GetAllAsync();
 
-            if(categoriesCount.ResultStatus==ResultStatus.Success && newsCount.ResultStatus == ResultStatus.Success && newsCommentsCount.ResultStatus == ResultStatus.Success&& userCount>-1 && newsList.ResultStatus==ResultStatus.Success)
+            if (categoriesCount.ResultStatus == ResultStatus.Success && newsCount.ResultStatus == ResultStatus.Success && newsCommentsCount.ResultStatus == ResultStatus.Success && userCount > -1 && newsList.ResultStatus == ResultStatus.Success)
             {
                 return View(new AdminDashboardDto
                 {
@@ -42,12 +43,21 @@ namespace App.Web.Mvc.Areas.Admin.Controllers
                     NewsCount = newsCount.Data,
                     NewsCommentsCount = newsCommentsCount.Data,
                     UsersCount = userCount,
-                    NewsList=newsList.Data
+                    NewsList = newsList.Data
                 });
             }
             return NotFound();
 
         }
-	
-	}
+        public async Task<IActionResult> UserIndex()
+        {
+            var user = _userManager.GetUserAsync(HttpContext.User).Result;
+            var roles = _userManager.GetRolesAsync(user).Result;
+            return View(new UserAndRolesViewModel
+            {
+                User = user,
+                Roles = roles
+            });      
+        }
+    }
 }

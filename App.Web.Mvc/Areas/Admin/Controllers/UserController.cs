@@ -7,9 +7,10 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
+
 namespace App.Web.Mvc.Areas.Admin.Controllers
 {
-    [Area("Admin")]
+	[Area("Admin")]
 	[Authorize(Roles = "Admin")]
 
 	public class UserController : Controller
@@ -17,20 +18,24 @@ namespace App.Web.Mvc.Areas.Admin.Controllers
 		private readonly UserManager<User> _userManager;
 		private readonly IImageHelper _imageHelper;
 		private readonly IMapper _mapper;
-		public UserController(UserManager<User> userManager, IImageHelper imageHelper, IMapper mapper)
+		private readonly RoleManager<Role> _roleManager;
+		public UserController(UserManager<User> userManager, IImageHelper imageHelper, IMapper mapper, RoleManager<Role> roleManager)
 		{
 			_userManager = userManager;
 			_imageHelper = imageHelper;
 			_mapper = mapper;
+			_roleManager = roleManager;
 		}
 
 		public async Task<IActionResult> Index()
 		{
 			var users = await _userManager.Users.ToListAsync();
+		    
 
 			return View(new UserListDto
 			{
 				Users = users
+
 			});
 		}
 		public IActionResult Create()
@@ -51,12 +56,13 @@ namespace App.Web.Mvc.Areas.Admin.Controllers
 				{
 				userAddDto.Picture = await _imageHelper.ImageUpload(userAddDto.UserName, userAddDto.PictureFile, "user");
 				}
-				var user = _mapper.Map<User>(userAddDto);
+				
+				var user = _mapper.Map<User>(userAddDto);			
 				var result = await _userManager.CreateAsync(user, userAddDto.Password); //Şifreyi hashleme işlemi yapıyor
 
 				if (result.Succeeded) //IdentityResult kütüphaneden geliyor
 				{
-				
+					await _userManager.AddToRoleAsync(user, "User");
 					return RedirectToAction(nameof(Index));
 				}
 				else
@@ -164,6 +170,8 @@ namespace App.Web.Mvc.Areas.Admin.Controllers
 				}
 			}
 			return View(userUpdateDto);
+
+
 		}
 
 	}

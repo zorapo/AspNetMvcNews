@@ -10,7 +10,7 @@
 					{
 
 						<div class="gazette-post-tag">
-							<a href="#">@item.Category.Name</a>
+							<a asp-action="Index" asp-controller="Category" asp-route-categoryId="@item.CategoryId">@item.Category.Name</a>
 						</div>
 						<h2 class="font-pt">@item.Title</h2>
 						<p class="gazette-post-date">@item.CreatedAt</p>
@@ -21,22 +21,17 @@
 						<!-- Post Excerpt -->
 						<p>@(item.SubTitle.ToString().Length > 300 ? item.SubTitle.ToString().Substring(0, 300) + "..." : item.SubTitle) </p>
 						<!-- Reading More -->
-						@*	@{
-					Dictionary<string, string> parms = new Dictionary<string, string>();
-
-					parms.Add("What's behind the world obsession with gems?", "~/ tema / img / blog - img / 1.jpg");
-
-					}*@
+					
 						<div class="post-continue-reading-share d-sm-flex align-items-center justify-content-between mt-30">
 							<div class="post-continue-btn">
-								<a asp-controller="News" asp-action="Detail" asp-route-id="@item.Id" class="font-pt">Continue Reading <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+								<a href="News/Details/@Url.FriendlyUrl(item.Title)/@item.Id" class="font-pt">Continue Reading <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
 							</div>
-							<div class="post-share-btn-group">
+							@*<div class="post-share-btn-group">
 								<a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
 								<a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
 								<a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
 								<a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-							</div>
+							</div>*@
 						</div>
 					}
 				</div>
@@ -45,7 +40,7 @@
 					<div class="gazette-heading">
 						<h4>today’s most popular</h4>
 					</div>
-					@foreach (var item in Model.News.OrderByDescending(t => t.CreatedAt).Take(2).ToList())
+					@foreach (var item in Model.News.OrderByDescending(t => t.CreatedAt).Skip(30).Take(2).ToList())
 					{
 
 						<!-- Single Today Post -->
@@ -59,10 +54,10 @@
 							<div class="todays-post-content">
 								<!-- Post Tag -->
 								<div class="gazette-post-tag">
-									<a asp-action="Index" asp-controller="Category" asp-route-id="@item.CategoryId">@item.Category.Name</a>
+									<a asp-action="Index" asp-controller="Category" asp-route-categoryId="@item.CategoryId">@item.Category.Name</a>
 								</div>
-								<h3><a asp-action="Detail" asp-controller="News" asp-route-id="@item.Id" class="font-pt">@item.Title</a></h3>
-
+								<h3><a href="News/Details/@Url.FriendlyUrl(item.Title)/@item.Id" class="font-pt">@item.Title</a></h3>
+								
 								<span>@item.CreatedAt.GetValueOrDefault().ToShortDateString()</span>
 
 								<p>@item.SubTitle</p>
@@ -80,16 +75,18 @@
 						<div class="widget-title">
 							<h5>breaking news</h5>
 						</div>
-						@foreach (var item in Model.News.OrderByDescending(t => t.CreatedAt).Take(2).ToList())
+						@foreach (var item in Model.News.OrderByDescending(t => t.CreatedAt).Skip(36).Take(2).ToList())
 						{
 							<!-- Single Breaking News Widget -->
 							<div class="single-breaking-news-widget">
-								<a asp-action="Detail" asp-controller="News" asp-route-id="@item.Id"><img src="~/img/news/@item.ImagePath" style="height:100% ;width:100%" alt=""></a>
+
+								<a href="/@Url.FriendlyUrl(item.Title)/@item.Id"><img src="~/img/news/@item.ImagePath" style="height:100% ;width:100%" alt=""></a>
 								<div class="breakingnews-title">
-									<a asp-action="Index" asp-controller="Category" asp-route-id="@item.CategoryId"><p>@item.Category.Name</p></a>
+									<a asp-action="Index" asp-controller="Category" asp-route-categoryId="@item.CategoryId"><p>@item.Category.Name</p></a>
 								</div>
 								<div class="breaking-news-heading gradient-background-overlay">
-									<a asp-action="Detail" asp-controller="News" asp-route-id="@item.Id" class="font-pt"><h5>@item.Title</h5></a>
+									<a href="News/Details/@Url.FriendlyUrl(item.Title)/@item.Id" class="font-pt"><h5>@item.Title</h5></a>
+									
 								</div>
 							</div>
 							<!-- Single Breaking News Widget -->
@@ -103,36 +100,20 @@
 						<div class="widget-title">
 							<h5>Don't miss</h5>
 						</div>
+						@foreach (var item in Model.News.OrderByDescending(t => t.CreatedAt).Skip(14).Take(3).ToList())
+						{
+							<div class="single-dont-miss-post d-flex mb-30">
+								<div class="dont-miss-post-thumb">
+									<img src="~/img/news/@item.ImagePath" style="height:80% ;width:100%" alt="">
+								</div>
+								<div class="dont-miss-post-content">
+									<a href="News/Details/@Url.FriendlyUrl(item.Title)/@item.Id" class="font-pt"><h5>@item.Title</h5></a>
+									<span>@item.CreatedAt.GetValueOrDefault().ToShortDateString()</span>
+								</div>
+							</div>
+						}
 						<!-- Single Don't Miss Post -->
-						<div class="single-dont-miss-post d-flex mb-30">
-							<div class="dont-miss-post-thumb">
-								<img src="~/tema/img/blog-img/dm-1.jpg" alt="">
-							</div>
-							<div class="dont-miss-post-content">
-								<a href="/News/Detail/" class="font-pt">EU council reunites</a>
-								<span>Nov 29, 2017</span>
-							</div>
-						</div>
-						<!-- Single Don't Miss Post -->
-						<div class="single-dont-miss-post d-flex mb-30">
-							<div class="dont-miss-post-thumb">
-								<img src="~/tema/img/blog-img/dm-2.jpg" alt="">
-							</div>
-							<div class="dont-miss-post-content">
-								<a href="/News/Detail/" class="font-pt">A new way to travel the world</a>
-								<span>March 29, 2016</span>
-							</div>
-						</div>
-						<!-- Single Don't Miss Post -->
-						<div class="single-dont-miss-post d-flex mb-30">
-							<div class="dont-miss-post-thumb">
-								<img src="~/tema/img/blog-img/dm-3.jpg" alt="">
-							</div>
-							<div class="dont-miss-post-content">
-								<a href="/News/Detail/" class="font-pt">Why choose a bank?</a>
-								<span>March 29, 2016</span>
-							</div>
-						</div>
+						
 					</div>
 					<!-- Advert Widget -->
 					<div class="advert-widget">
@@ -140,21 +121,11 @@
 							<h5>Advert</h5>
 						</div>
 						<div class="advert-thumb mb-30">
-							<a href="#"><img src="~/tema/img/bg-img/add.png" alt=""></a>
+							<a href="https://www.mediamarkt.com.tr/tr/product/_saeco-sm6585-00-granaroma-tam-otomatik-espresso-makinesi-siyah-1226566.html?waw_keyword=saeco"><img src="~/img//reklam1.jpg" alt="header-add"></a>
 						</div>
 					</div>
-					<!-- Subscribe Widget -->
-					<div class="subscribe-widget">
-						<div class="widget-title">
-							<h5>subscribe</h5>
-						</div>
-						<div class="subscribe-form">
-							<form action="#">
-								<input type="email" name="email" id="subs_email" placeholder="Your Email">
-								<button type="submit">subscribe</button>
-							</form>
-						</div>
-					</div>
+
+					
 				</div>
 			</div>
 		</div>

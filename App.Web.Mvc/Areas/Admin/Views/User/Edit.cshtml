@@ -1,41 +1,40 @@
 ﻿@model UserUpdateDto
 
-<div class="mt-5">
-    <h5>Kullanıcı Güncelle</h5>
-
-
-
-    <form asp-action="Edit" enctype="multipart/form-data">
-        <input name="IsValid" type="hidden" value="@ViewData.ModelState.IsValid.ToString()" />
-        <div asp-validation-summary="ModelOnly" class="text-danger" id="validation-summary"></div>
-        <input asp-for="Id" type="hidden" />
-        <div class="form-group">
-            <label asp-for="UserName"></label>
-            <input class="form-control" asp-for="UserName" placeholder="Lütfen kullanıcı adı giriniz." />
-            <span class="text-danger" asp-validation-for="UserName"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="Email"></label>
-            <input class="form-control" type="email" asp-for="Email" placeholder="Lütfen e-posta adresi giriniz." />
-            <span class="text-danger" asp-validation-for="Email"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="Picture"></label>
-            <input asp-for="Picture" type="hidden"/> 
-            <img class="image-style" src="~/img/user/@Model.Picture" alt="@Model.UserName"/>
-        </div>
-        <div class="form-group">
-            <label asp-for="PictureFile"></label>
-            <input class="form-control-file" type="file" accept="image/*" asp-for="PictureFile" />
-            <span class="text-danger" asp-validation-for="PictureFile"></span>
-        </div>
-        <div class="form-group mt-5">
-            <a class="btn btn-danger " asp-area="Admin" asp-action="Index" asp-controller="User"><span class="fas fa-times"></span> İptal</a>
-            <input type="submit" class="btn btn-primary" value="Kaydet" />
-        </div>
-    </form>
+<h1 class="text-center">Kullanıcı Güncelle</h1>
+<div class="row">
+	<div class="col-md-4 offset-4 mt-5">
+		<form asp-action="Edit" enctype="multipart/form-data">
+			<input name="IsValid" type="hidden" value="@ViewData.ModelState.IsValid.ToString()" />
+			<div asp-validation-summary="ModelOnly" class="text-danger" id="validation-summary"></div>
+			<input asp-for="Id" type="hidden" />
+			<div class="form-group">
+				<label asp-for="UserName"></label>
+				<input class="form-control" asp-for="UserName" placeholder="Lütfen kullanıcı adı giriniz." />
+				<span class="text-danger" asp-validation-for="UserName"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="Email"></label>
+				<input class="form-control" type="email" asp-for="Email" placeholder="Lütfen e-posta adresi giriniz." />
+				<span class="text-danger" asp-validation-for="Email"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="Picture"></label>
+				<input asp-for="Picture" type="hidden" />
+				<img class="image-style" src="~/img/user/@Model.Picture" alt="@Model.UserName" />
+			</div>
+			<div class="form-group">
+				<label asp-for="PictureFile"></label>
+				<input class="form-control-file" type="file" accept="image/*" asp-for="PictureFile" />
+				<span class="text-danger" asp-validation-for="PictureFile"></span>
+			</div>
+			<div class="form-group mt-5">
+				<a class="btn btn-danger " asp-area="Admin" asp-action="Index" asp-controller="User"><span class="fas fa-times"></span> İptal</a>
+				<input type="submit" class="btn btn-primary" value="Kaydet" />
+			</div>
+		</form>
 
 
 
 
+	</div>
 </div>

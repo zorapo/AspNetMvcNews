@@ -1,10 +1,11 @@
-﻿<div class="breadcumb-area section_padding_50">
+﻿@model Contact
+<div class="breadcumb-area section_padding_50">
 	<div class="container">
 		<div class="row">
 			<div class="col-12">
 				<div class="breacumb-content d-flex align-items-center justify-content-between">
 					<h3 class="font-pt mb-0">Contact</h3>
-					<p class="editorial-post-date text-dark mb-0">28 November 2017</p>
+					<p class="editorial-post-date text-dark mb-0">@DateTime.Now.ToShortDateString()</p>
 				</div>
 			</div>
 		</div>
@@ -16,18 +17,23 @@
 		<div class="row">
 			<div class="col-12 col-md-8">
 				<div class="gazette-heading">
-					<h4 class="font-bold">address</h4>
+					<h4 class="font-bold">Message</h4>
 				</div>
+				@Html.Raw(TempData["Mesaj"])
 				<!-- Contact Form -->
-				<form action="#" method="post">
+				<form asp-controller="Page" asp-action="Contact" method="post">
 					<div class="form-group">
-						<input type="text" class="form-control" id="contact-name" placeholder="Enter Your Full Name">
+						<input asp-for="Name" type="text" class="form-control" id="contact-name" placeholder="Enter Your Full Name">
+						<span asp-validation-for="Name" class="text-danger"></span>
 					</div>
 					<div class="form-group">
-						<input type="email" class="form-control" id="contact-email" placeholder="Email">
+						<input asp-for=Email type="email" class="form-control" id="contact-email" placeholder="Email">
+						<span asp-validation-for="Email" class="text-danger"></span>
 					</div>
 					<div class="form-group">
-						<textarea class="form-control" name="message" id="message" cols="30" rows="10" placeholder="Message"></textarea>
+						<textarea asp-for="Message" class="form-control" name="message" id="message" cols="30" rows="10" placeholder="Message"></textarea>
+						<span asp-validation-for="Message" class="text-danger"></span>
+
 					</div>
 					<button type="submit" class="btn contact-btn">SUBMIT <i class="fa fa-angle-right ml-2"></i></button>
 				</form>
@@ -37,27 +43,25 @@
 					<h4 class="font-bold">address</h4>
 				</div>
 				<div class="contact-address-info mb-50">
-					<p>Address: 1635 Franklin Street <br> City / State: Montgomery, AL 36104 <br> Phone: 126-632-2345</p>
+					<p>
+						Address: Kemankeş Karamustafa Paşa Mah. Alipaşa Değirmeni Sok. No:3  <br> City / State: Karaköy / İstanbul, AL 34560 <br> Phone: 850-272-7454
+					</p>
 				</div>
 				<div class="gazette-heading">
 					<h4 class="font-bold">Phone</h4>
 				</div>
 				<div class="contact-address-info">
-					<p>Phone #1: 126-632-2345 <br>Phone #2: 126-632-2345 <br>Phone #3: 126-632-2345 <br>Phone #4: 126-632-2345</p>
+					<p>Phone #1:  0850-272-7454 <br>Phone #2:  0850-272-7454 <br>Phone #3:  0850-272-7454 <br>Phone #4: 0850-272-7454</p>
 				</div>
 			</div>
 		</div>
 	</div>
 </section>
-<div id="googleMap" style="position: relative; overflow: hidden;">
-	<div style="height: 100%; width: 100%; position: absolute; top: 0px; left: 0px; background-color: rgb(229, 227, 223);">
-	
-		<div class="container">
-			<div class="gm-err-content text-center">				
-						<div class="gm-err-icon"><img src="https://maps.gstatic.com/mapfiles/api-3/images/icon_error.png" alt="" draggable="false" style="user-select: none;"></div>
-				<div class="gm-err-title ">Hata! Bir sorun oluştu.</div>
-				<div class="gm-err-message">Bu sayfa Google Haritalar'ı düzgün şekilde yükleyemedi. Teknik ayrıntılar için JavaScript konsoluna bakın.</div>
-			</div>
-		</div>
-	</div>
+<div class="col-12 ">
+	<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12040.000958790157!2d28.9789395!3d41.0252507!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14cab974807d0575%3A0x44089783d1089f31!2sSiliconmade%20Academy!5e0!3m2!1str!2str!4v1687460871421!5m2!1str!2str" width="100%" height="500" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+	</iframe>
 </div>
+@section Scripts{
+	<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+	<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}

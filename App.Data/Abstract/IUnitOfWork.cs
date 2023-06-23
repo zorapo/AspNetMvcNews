@@ -10,6 +10,7 @@
         INewsCommentRepository NewsComments { get; }
 
         IPageRepository Pages { get; }
+        IContactRepository Contacts { get; }
 
         ISettingRepository Settings { get; }
 

@@ -1,0 +1,60 @@
+﻿@model Contact
+@{
+    ViewData["Title"] = "Edit";
+}
+<h1 class="text-center">İletişim Detay</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4 offset-4">
+        <form asp-action="Edit" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="@Model.Id" />
+            @*   <div class="form-group">
+            <label asp-for="@Model.News.UserId" class="control-label"></label>
+            <select asp-for="@Model.News.UserId" class="form-control" asp-items="ViewBag.UserId"></select>
+            <span asp-validation-for="@Model.News.UserId" class="text-danger"></span>
+            </div>*@
+            <div class="form-group">
+                <label asp-for="@Model.Name" class="control-label">Başlık</label>
+                <input asp-for="@Model.Name" class="form-control" />
+                <span asp-validation-for="@Model.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.Email" class="control-label">İçerik</label>
+                <textarea asp-for="@Model.Email" class="form-control" rows="5"></textarea>
+                <span asp-validation-for="@Model.Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.Message" class="control-label">İçerik</label>
+                <textarea asp-for="@Model.Message" class="form-control" rows="5"></textarea>
+                <span asp-validation-for="@Model.Message" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="@Model.UpdatedAt" class="control-label">Güncellenme Tarihi</label>
+                <input asp-for="@Model.UpdatedAt" class="form-control" />
+                <span asp-validation-for="@Model.UpdatedAt" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="@Model.IsDeleted" /> Silindi Mi?
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="@Model.IsActive" /> Aktif Mi?
+                </label>
+            </div>
+
+            <div class="form-group">
+                <a class="btn btn-danger" asp-action="Index">İptal</a>
+                <input type="submit" value="Kaydet" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+
+

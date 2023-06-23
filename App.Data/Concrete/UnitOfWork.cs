@@ -13,6 +13,7 @@ namespace App.Data.Concrete
         private EfNewsCommentRepository _newsCommentRepository;
         private EfPageRepository _pageRepository;
         private EfSettingRepository _settingRepository;
+        private EfContactRepository _contactRepository;
 
         public UnitOfWork(AppDbContext context)
         {
@@ -29,6 +30,8 @@ namespace App.Data.Concrete
         public IPageRepository Pages => _pageRepository ?? new EfPageRepository(_context);
 
         public ISettingRepository Settings => _settingRepository ?? new EfSettingRepository(_context);
+
+        public IContactRepository Contacts => _contactRepository ?? new EfContactRepository(_context);
 
         public async ValueTask DisposeAsync()
         {

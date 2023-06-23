@@ -1,0 +1,21 @@
+﻿@model DataResult<NewsCommentDto>
+
+<div class=" card container my-5">
+	<div class="row">
+		<div class="col-8 offset-2 card-body">
+			<h4># @Model.Data.NewsComment.NewsId News Comment Detail</h4>
+			<hr />
+			
+			<div class="form-group">
+				<b>Comment </b><br />
+				@Model.Data.NewsComment.Comment
+			</div>
+
+
+			<div class="mb-3">
+				<a class="btn btn-primary" asp-action="Index" asp-controller="NewsComment">Close</a>
+			</div>
+		</div>
+	</div>
+</div>
+

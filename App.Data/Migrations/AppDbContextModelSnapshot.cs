@@ -55,7 +55,54 @@ namespace App.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Category", (string)null);
+                    b.ToTable("Category");
+                });
+
+            modelBuilder.Entity("App.Entities.Concrete.Contact", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedByName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("DeletedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("NVARCHAR(MAX)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Message")
+                        .HasColumnType("NVARCHAR(MAX)");
+
+                    b.Property<string>("ModifiedByName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("NVARCHAR(30)");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Contact");
                 });
 
             modelBuilder.Entity("App.Entities.Concrete.News", b =>
@@ -71,7 +118,7 @@ namespace App.Data.Migrations
 
                     b.Property<string>("Content")
                         .IsRequired()
-                        .HasColumnType("ntext");
+                        .HasColumnType("NVARCHAR(MAX)");
 
                     b.Property<DateTime?>("CreatedAt")
                         .HasColumnType("datetime2");
@@ -98,7 +145,7 @@ namespace App.Data.Migrations
 
                     b.Property<string>("SubTitle")
                         .IsRequired()
-                        .HasColumnType("ntext");
+                        .HasColumnType("NVARCHAR(MAX)");
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -118,7 +165,7 @@ namespace App.Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("News", (string)null);
+                    b.ToTable("News");
                 });
 
             modelBuilder.Entity("App.Entities.Concrete.NewsComment", b =>
@@ -131,7 +178,7 @@ namespace App.Data.Migrations
 
                     b.Property<string>("Comment")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("NVARCHAR(MAX)");
 
                     b.Property<DateTime?>("CreatedAt")
                         .HasColumnType("datetime2");
@@ -169,7 +216,7 @@ namespace App.Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("NewsComment", (string)null);
+                    b.ToTable("NewsComment");
                 });
 
             modelBuilder.Entity("App.Entities.Concrete.NewsImage", b =>
@@ -206,7 +253,7 @@ namespace App.Data.Migrations
 
                     b.HasIndex("NewsId");
 
-                    b.ToTable("NewsImage", (string)null);
+                    b.ToTable("NewsImage");
                 });
 
             modelBuilder.Entity("App.Entities.Concrete.Page", b =>
@@ -218,13 +265,13 @@ namespace App.Data.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Content")
-                        .HasColumnType("text");
+                        .HasColumnType("NVARCHAR(MAX)");
 
                     b.Property<string>("Content_One")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("NVARCHAR(MAX)");
 
                     b.Property<string>("Content_Two")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("NVARCHAR(MAX)");
 
                     b.Property<DateTime?>("CreatedAt")
                         .HasColumnType("datetime2");
@@ -259,7 +306,7 @@ namespace App.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Page", (string)null);
+                    b.ToTable("Page");
                 });
 
             modelBuilder.Entity("App.Entities.Concrete.Role", b =>
@@ -329,7 +376,7 @@ namespace App.Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Setting", (string)null);
+                    b.ToTable("Setting");
                 });
 
             modelBuilder.Entity("App.Entities.Concrete.User", b =>

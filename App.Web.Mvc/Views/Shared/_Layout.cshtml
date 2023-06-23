@@ -18,9 +18,11 @@
     <link rel="stylesheet" href="~/tema/css/font-awesome.min.css">
     <link rel="stylesheet" href="~/tema/css/core-style.css">
     <link rel="stylesheet" href="~/tema/css/style.css">
+    <script src="~/lib/bootstrap/dist/css/bootstrap.css"></script>
 	
     <!-- Responsive CSS -->
     <link href="~/tema/css/responsive.css" rel="stylesheet">
+
 </head>
 <body>
     <header class="header-area">
@@ -81,7 +83,12 @@
     <!-- Google Maps js -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDk9KNSL1jTv4MY9Pza6w8DJkpI_nHyCnk"></script>
     <script src="~/tema/js/map-active.js"></script>
-
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
+	<a href="~/lib/jquery/dist/jquery.min.map">~/lib/jquery/dist/jquery.min.map</a>
+	<script src="~/lib/jquery/dist/jquery.min.js"></script>
+	<script src="~/lib/jquery/dist/jquery.js"></script>
+	<script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+	
     @await RenderSectionAsync("Scripts", required:false)
 </body>
 </html>

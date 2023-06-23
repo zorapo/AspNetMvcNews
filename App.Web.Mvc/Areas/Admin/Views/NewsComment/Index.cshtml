@@ -1,0 +1,76 @@
+﻿@model NewsCommentListDto
+<ol class="breadcrumb mb-3 mt-2">
+    <li class="breadcrumb-item"><a asp-area="Admin" asp-controller="Home" asp-action="Index">Admin</a></li>
+    <li class="breadcrumb-item active"><a asp-area="Admin" asp-controller="NewsComment" asp-action="Index">Comments</a></li>
+</ol>
+@*@if (Model.ResultStatus == ResultStatus.Success)
+{
+   *@ 
+<div class="card mb-4">
+    <div class="card-header">
+        <i class="fas fa-table mr-1"></i>
+       Comments
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="commentsTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Comment Id</th>
+                        <th>News</th>
+                        <th>Comment Content</th>
+                        <th>Is Active?</th>
+                        <th>Is Deleted?</th>
+                        <th>Created Date</th>
+                        <th>Created By</th>      
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+         
+                <tbody>
+                    @foreach (var comment in Model.NewsComments)
+                    {
+                        <tr >
+                            <td>@comment.Id</td>
+                            <td>@(comment.News.Title.ToString().Length > 50 ? comment.News.Title.ToString().Substring(0, 50) + "..." : comment.News.Title)</td>
+                            <td>@(comment.Comment.ToString().Length > 50 ? comment.Comment.ToString().Substring(0, 50) + "..." : comment.Comment)</td>
+                            <td>@(comment.IsActive ? "Yes" : "No")</td>
+                            <td>@(comment.IsDeleted ? "Yes" : "No")</td>
+                            <td>@comment.CreatedAt.GetValueOrDefault().ToShortDateString()</td>
+                            <td>@comment.CreatedByName</td>
+                            <td>
+                                @if (!comment.IsActive)
+                                {
+                                        <a class="btn btn-warning btn-sm btn-approve" asp-action="Approve" asp-controller="NewsComment" asp-route-commentId="@comment.Id"><span class="fas fa-thumbs-up"></span></a>
+                                }
+                                    <a class="btn btn-info btn-sm btn-detail" asp-controller="NewsComment" asp-action="Detail" asp-route-commentId="@comment.Id"><span class="fas fa-newspaper"></span></a>
+                                    <a class="btn btn-primary btn-sm mt-1 btn-update" asp-controller="NewsComment" asp-action="Edit" asp-route-commentId="@comment.Id"><span class="fas fa-edit"></span></a>
+                                    <a class="btn btn-danger btn-sm mt-1 btn-delete" asp-controller="NewsComment" asp-action="Delete" asp-route-commentId="@comment.Id"><span class="fas fa-minus-circle"></span></a>
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th>Comment Id</th>
+                        <th>News</th>
+                        <th>Comment Content</th>
+                        <th>Is Active?</th>
+                        <th>Is Deleted?</th>
+                        <th>Created Date</th>
+                        <th>Created By</th>
+                        <th>Actions</th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+    </div>
+@*}
+else
+{
+    <div> @Model.Message </div>
+}*@
+
+

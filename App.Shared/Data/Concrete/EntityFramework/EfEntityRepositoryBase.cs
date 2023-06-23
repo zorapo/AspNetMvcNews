@@ -1,6 +1,8 @@
 ﻿using App.Shared.Data.Abstract;
 using App.Shared.Entities.Abstract;
+using LinqKit;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Linq;
 using System.Linq.Expressions;
 
@@ -83,11 +85,14 @@ namespace App.Shared.Data.Concrete.EntityFramework
 			IQueryable<TEntity> query = _context.Set<TEntity>();
 			if (predicates.Any())
 			{
+				var newPredicate = PredicateBuilder.New<TEntity>();
 				foreach(var predicate in predicates)
 				{
-					query=query.Where(predicate);
+					
+					newPredicate.Or(predicate);
 				}
-			}
+                query = query.Where(newPredicate);
+            }
             if (includeProperties.Any())
             {
                 foreach (var includeProperty in includeProperties)

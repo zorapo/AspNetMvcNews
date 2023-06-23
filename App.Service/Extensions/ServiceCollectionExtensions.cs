@@ -24,15 +24,20 @@ namespace App.Service.Extensions
                 options.Password.RequireLowercase = false; // Küçük harf zorunlu olsun mu?
                 options.Password.RequireUppercase = false; // Büyük harf zorunlu olsun mu?
                 // User Username ve Email Options
-                options.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+"; // User name hangi karakterlerden oluşabilir?
+                options.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+ "; // User name hangi karakterlerden oluşabilir?
                 options.User.RequireUniqueEmail = true; // email unique olsun
                 options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(3);
                 options.Lockout.MaxFailedAccessAttempts = 3;
             }).AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders();
+            services.Configure<SecurityStampValidatorOptions>(options =>
+            {
+                options.ValidationInterval = TimeSpan.FromMinutes(20); //Önemli değişikliklerden sonra kullanıcı 20 dk sonra çıkarılıp tekrar giriş yapması sağlansın.
+            });
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<ICategoryService, CategoryManager>();
             services.AddScoped<INewsService, NewsManager>();
             services.AddScoped<IPageService, PageManager>();
+            services.AddScoped<IContactService, ContactManager>();
             services.AddScoped<INewsCommentService, NewsCommentManager>();
             services.AddScoped<ISendEmailService, SendEmailService>();
             return services;

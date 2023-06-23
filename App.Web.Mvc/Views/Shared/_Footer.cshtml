@@ -2,81 +2,32 @@
     <!-- Top Footer Area -->
     <div class="top-footer-area section_padding_100_70">
         <div class="container">
-            <div class="row">
+            <div class="row justify-content-center">
                 <!-- Single Footer Widget -->
                 <!-- Single Footer Widget -->
                 <div class="col-12 col-sm-6 col-md-4 col-lg-2">
                     <div class="single-footer-widget">
                         <div class="footer-widget-title">
-                            <h4 class="font-pt">Kategoriler</h4>
+                            <h4 class="font-pt">Categories</h4>
                         </div>
                         <ul class="footer-widget-menu">
-                            <li><a href="#">Politika</a></li>
-                            <li><a href="#">Teknoloji</a></li>
-                            <li><a href="#">Spor</a></li>
-                            <li><a href="#">Sağlık</a></li>
-                            <li><a href="#">Seyahat</a></li>
+                            <li><a asp-controller="Category" asp-action="Index" asp-route-categoryId="1">Politics</a></li>
+                            <li><a asp-controller="Category" asp-action="Index" asp-route-categoryId="2">Technology</a></li>
+                            <li><a asp-controller="Category" asp-action="Index" asp-route-categoryId="3">Sport</a></li>
+                            <li><a asp-controller="Category" asp-action="Index" asp-route-categoryId="4">Health</a></li>
+                            <li><a asp-controller="Category" asp-action="Index" asp-route-categoryId="5">Travel</a></li>
                         </ul>
                     </div>
                 </div>
-                <!-- Single Footer Widget -->
-                @*<div class="col-12 col-sm-6 col-md-4 col-lg-2">
-                <div class="single-footer-widget">
-                <div class="footer-widget-title">
-                <h4 class="font-pt">Politics</h4>
-                </div>
-                <ul class="footer-widget-menu">
-                <li><a href="#">Business</a></li>
-                <li><a href="#">Markets</a></li>
-                <li><a href="#">Tech</a></li>
-                <li><a href="#">Luxury</a></li>
-                </ul>
-                </div>
-                </div>
-                <!-- Single Footer Widget -->
-                <div class="col-12 col-sm-6 col-md-4 col-lg-2">
-                <div class="single-footer-widget">
-                <div class="footer-widget-title">
-                <h4 class="font-pt">Featured</h4>
-                </div>
-                <ul class="footer-widget-menu">
-                <li><a href="#">Football</a></li>
-                <li><a href="#">Golf</a></li>
-                <li><a href="#">Tennis</a></li>
-                <li><a href="#">Motorsport</a></li>
-                <li><a href="#">Horseracing</a></li>
-                <li><a href="#">Equestrian</a></li>
-                <li><a href="#">Sailing</a></li>
-                <li><a href="#">Skiing</a></li>
-                </ul>
-                </div>
-                </div>
-                <!-- Single Footer Widget -->
-                <div class="col-12 col-sm-6 col-md-4 col-lg-2">
-                <div class="single-footer-widget">
-                <div class="footer-widget-title">
-                <h4 class="font-pt">FAQ</h4>
-                </div>
-                <ul class="footer-widget-menu">
-                <li><a href="#">Aviation</a></li>
-                <li><a href="#">Business</a></li>
-                <li><a href="#">Traveller</a></li>
-                <li><a href="#">Destinations</a></li>
-                <li><a href="#">Features</a></li>
-                <li><a href="#">Food/Drink</a></li>
-                <li><a href="#">Hotels</a></li>
-                <li><a href="#">Partner Hotels</a></li>
-                </ul>
-                </div>
-                </div>*@
+
                 <div class="col-12 col-sm-6 col-md-4 col-lg-2">
                     <div class="single-footer-widget">
                         <div class="footer-widget-title">
-                            <h4 class="font-pt">Sayfalar</h4>
+                            <h4 class="font-pt">Pages</h4>
                         </div>
                         <ul class="footer-widget-menu">
-                            <li><a href="~/Page/Detail">Hakkımızda</a></li>
-                            <li><a href="#">İletişim</a></li>
+                            <li><a href="~/Page/Detail">About Us</a></li>
+                            <li><a href="~/Page/Contact">Contact</a></li>
                         </ul>
                     </div>
                 </div>
@@ -84,10 +35,10 @@
                 <div class="col-12 col-sm-6 col-md-4 col-lg-2">
                     <div class="single-footer-widget">
                         <div class="footer-widget-title">
-                            <h4 class="font-pt">Giriş Ekranı</h4>
+                            <h4 class="font-pt">Sign In</h4>
                         </div>
                         <ul class="footer-widget-menu">
-                            <li><a asp-controller="Auth" asp-action="Login" class="nav-link" style="color: white;">Giriş Yap <i aria-hidden="true"></i></a>></li>
+                            <li><a asp-controller="Auth" asp-action="Login" class="nav-link" style="color: white;">Sign In <i aria-hidden="true"></i></a>></li>
                         </ul>
                     </div>
                 </div>

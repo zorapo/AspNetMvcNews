@@ -33,16 +33,18 @@ namespace App.Web.Mvc.Controllers
 		[HttpPost]
 		public async Task<IActionResult> Register(UserRegisterDto userRegisterDto)
 		{
+			
 			if (ModelState.IsValid)
 			{
 				var newUser = _mapper.Map<User>(userRegisterDto);
-				newUser.Picture = "default.jpg";
+				newUser.Picture = "default.jpg";	
+				
 				var result = await _userManager.CreateAsync(newUser, userRegisterDto.Password); //Şifreyi hashleme işlemi yapıyor
 
 				if (result.Succeeded) //IdentityResult kütüphaneden geliyor
 				{
-					TempData.Add("Message", "Your registration has been successfully.");
-
+					await _userManager.AddToRoleAsync(newUser, "User");
+					TempData.Add("MessageAuth", "Your registration has been successfully.");					
 					return View(nameof(Register));
 				}
 				else
@@ -125,7 +127,7 @@ namespace App.Web.Mvc.Controllers
 				token = passwordResetToken
 			}, HttpContext.Request.Scheme);
 			await _sendEmailService.SendResetPasswordEmail(passwordResetLink, user.Email);
-			TempData["Message"] = "Şifre yenileme linki e-posta adresinize gönderilmiştir.";
+			TempData["MessageAuth"] = "Şifre yenileme linki e-posta adresinize gönderilmiştir.";
 
 			return RedirectToAction(nameof(ForgotPassword));
 		}
@@ -135,7 +137,7 @@ namespace App.Web.Mvc.Controllers
 			return token == null ? View("ErrorPage") : View(new ResetPasswordDto
 			{
 				TokenCode = token,
-			});  //View(Error) olarak değiştirilecek!!!
+			});  
 
 		}
 
@@ -153,7 +155,7 @@ namespace App.Web.Mvc.Controllers
 				var result = await _userManager.ResetPasswordAsync(user, resetPasswordDto.TokenCode, resetPasswordDto.Password);
 				if (result.Succeeded)
 				{
-					TempData["Message"] = "Şifreniz başarıyla yenilenmiştir.";
+					TempData["MessageAuth"] = "Şifreniz başarıyla yenilenmiştir.";
 					await _userManager.UpdateSecurityStampAsync(user);
 					return View(resetPasswordDto);
 				}

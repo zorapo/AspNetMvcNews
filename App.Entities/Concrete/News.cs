@@ -17,14 +17,14 @@ namespace App.Entities.Concrete
 		public string Title { get; set; }
 
 		[MaxLength]
-		[Column(TypeName = "ntext")]
+		[Column(TypeName = "NVARCHAR(MAX)")]
 		public string SubTitle { get; set; }
 
-		[Column(TypeName = "ntext")]
+		[Column(TypeName = "NVARCHAR(MAX)")]
 		[MaxLength]
 		public string Content { get; set; }
         public  User? User { get; set; }
-        public  Category? Category { get; set; }
+        public  Category Category { get; set; }
 
         //public NewsImage? NewsImage { get; set; }
         public string? ImagePath { get; set; }

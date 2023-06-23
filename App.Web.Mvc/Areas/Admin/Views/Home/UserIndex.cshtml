@@ -1,0 +1,8 @@
+﻿@model App.Web.Mvc.Areas.Admin.Models.UserAndRolesViewModel
+
+@{	
+    Layout = "_LayoutAdmin";
+    ViewBag.Title = "Dashboard";
+}
+<h3 class="text-center my-5">@Model.User.UserName welcome to user panel ! </h3>
+<div class="text-center"><h4>Please click to go to the<a asp-area="" asp-controller="Home" asp-action="Index"> home page</a></h4></div>

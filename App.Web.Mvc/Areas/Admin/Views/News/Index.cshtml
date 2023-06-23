@@ -8,16 +8,18 @@
 	<li class="breadcrumb-item active"><a asp-area="Admin" asp-controller="News" asp-action="Index">News</a></li>
 </ol>
 
-<h1>Index</h1>
-
-<p>
-	<a asp-action="Create">Haber Ekle</a>
-</p>
-<div class="card mb-4 mt-2">
-
+<div id="modalPlaceHolder" aria-hidden="true"></div>
+<div class="card mt-2">
+	<div class="card-header">
+		<i class="fas fa-table mr-1"></i>
+		Heberler
+	</div>
 	<div class="card-body">
 
 		<div class="table-responsive">
+			<div>
+				<a asp-controller="News" asp-action="Create" class="btn btn-success">Haber Ekle</a>
+			</div>
 			<table class="table table-bordered display" id="newsTable" width="100%" cellspacing="0">
 				<thead>
 					<tr>
@@ -71,7 +73,7 @@
 								@Html.DisplayFor(modelItem => item.Title)
 							</td>
 							<td>
-								@Html.DisplayFor(modelItem => item.SubTitle)
+								@item.SubTitle.Substring(0,20) ...
 							</td>
 							<td>
 								@item.Content.Substring(0,20) ...
@@ -97,9 +99,10 @@
 							<td>
 								@Html.DisplayFor(modelItem => item.ModifiedByName)
 							</td>
-							<td class="text-center">
+							<td class="text-center text-nowrap">
 								<a class="btn btn-primary btn-sm " asp-area="Admin" asp-controller="News" asp-action="Edit" asp-route-newsId="@item.Id"><span class="fas fa-edit"></span></a>
 								<a class="btn btn-danger btn-sm " asp-area="Admin" asp-controller="News" asp-action="Delete" asp-route-newsId="@item.Id"><span class="fas fa-minus-circle"></span></a>
+								<a class="btn btn-success btn-sm " asp-area="Admin" asp-controller="News" asp-action="Detail" asp-route-newsId="@item.Id"><span class="fas fa-newspaper"></span></a>
 							</td>
 						</tr>
 					}

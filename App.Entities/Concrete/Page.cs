@@ -16,10 +16,12 @@ namespace App.Entities.Concrete
 		[Column(TypeName = "NVARCHAR")]
 		public string Title { get; set; }
 
-		[Column(TypeName = "text")]
+		[Column(TypeName = "NVARCHAR(MAX)")]
 		public string? Content { get; set; }
-		public string? Content_One { get; set; }
-		public string? Content_Two { get; set; }
+        [Column(TypeName = "NVARCHAR(MAX)")]
+        public string? Content_One { get; set; }
+        [Column(TypeName = "NVARCHAR(MAX)")]
+        public string? Content_Two { get; set; }
 		public bool IsActive { get; set; }
 		public string? ImagePath { get; set; }
 
@@ -27,7 +29,7 @@ namespace App.Entities.Concrete
         public IFormFile? ImageFile { get; set; }
 
         [DisplayName("Durum")]
-        public string? IsActiveString => !IsActive? "Pasif" : "Aktif";
+        public string? IsActiveString => !IsActive? "Passive" : "Active";
         public DateTime? CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }
         public DateTime? DeletedAt { get; set; }

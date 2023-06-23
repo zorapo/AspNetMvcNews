@@ -7,6 +7,7 @@ using App.Web.Mvc.Helpers.Abstract;
 using App.Web.Mvc.Helpers.Concrete;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -48,7 +49,7 @@ var app = builder.Build();
 using (var scope = app.Services.CreateScope())
 {
 	var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-	//db.Database.Migrate();
+	db.Database.Migrate();
 }
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -68,11 +69,24 @@ app.UseAuthorization();
 
 
 app.MapControllerRoute(
-			name: "admin",
-			pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+	name: "admin",
+	pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
 		  );
+//app.MapControllerRoute(
+//    name: "settings",
+//    pattern: "{PasswordChage}",
+//    defaults: new { area="Admin", controller = "Setting", action = "PasswordChange" });
+         
+app.MapControllerRoute(
+	name: "news",
+	pattern: "{News}/{Details}/{title}/{id}",
+	defaults: new { controller = "News", action = "Detail" });
+
 app.MapControllerRoute(
 	name: "default",
 	pattern: "{controller=Home}/{action=Index}/{id?}");
+
+
+
 
 app.Run();

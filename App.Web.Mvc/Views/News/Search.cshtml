@@ -1,13 +1,56 @@
 ﻿@model SearchViewModel
+
 @if (Model.NewsList == null || Model.NewsList.Count == 0)
 {
-	<div class="container d-flex justify-content-center my-5">
-		<div class="row">
-			<h3><a href="#" class="font-pt mb-2">Aradığınız içerikte haber bulunamadı!</a></h3>
-		</div>
-	</div>
+    <div class="container d-flex justify-content-center my-5">
+        <div class="row">
+            <h3><a href="#" class="font-pt mb-2">Aradığınız içerikte haber bulunamadı!</a></h3>
+        </div>
+    </div>
 }
 else
 {
-	<partial name="_News" model="Model.NewsList" />
+    
+<section class="catagory-welcome-post-area section_padding_100">
+    <div class="container">
+            <h3 class="mb-5"style="font-weight:bold">Search Results for "@Model.Keyword" : </h3>
+        <div class="row">
+        
+            @foreach (var item in Model.NewsList)
+            {
+                <div class="col-12 col-md-6">
+                    <!-- Gazette Welcome Post -->
+                    <div class="gazette-welcome-post">
+                        <!-- Post Tag -->
+                        <div class="gazette-post-tag">
+                           @item.Category.Name
+                        </div>
+                        <h2 class="font-pt"><a href="/@Url.FriendlyUrl(item.Title)/@item.Id">@item.Title</a></h2>
+                        <p class="gazette-post-date">@String.Format("{0: dd MMMM yyyy}", item.CreatedAt)</p>
+                        <!-- Post Thumbnail -->
+                        <div class="blog-post-thumbnail my-5" style="max-width:540px;max-height:300px">
+                            <img src="~/img/news/@item.ImagePath" alt="post-thumb">
+                        </div>
+                        <!-- Post Excerpt -->
+                        <p>@(item.Content.ToString().Length > 40 ? item.SubTitle.ToString().Substring(0, 40) + "..." : item.SubTitle)</p>
+                        <!-- Reading More -->
+                        <div class="post-continue-reading-share mt-30">
+                            <div class="post-continue-btn">
+                                    <a href="/@Url.FriendlyUrl(item.Title)/@item.Id" class="font-pt">CONTİNUE READING ><i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            }
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="gazette-pagination-area">
+                        @Html.PagedListPager(Model.NewsList, page => Url.Action("Search","News" ,new {  keyword=Model.Keyword,pageNo=page}), new PagedListRenderOptions() { UlElementClasses = new[] { "pagination" }, LiElementClasses = new[] { "page-item" }, PageClasses = new[] { "page-link" } })
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 }

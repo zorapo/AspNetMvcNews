@@ -1,0 +1,89 @@
+﻿@using App.Shared.Utilities.Results.Concrete;
+@model DataResult<App.Entities.Dtos.ContactListDto>
+@{
+	Layout = "_LayoutAdmin";
+}
+
+
+<div id="modalPlaceHolder" aria-hidden="true"></div>
+<div class="card mt-2">
+	<div class="card-header">
+		<i class="fas fa-table mr-1"></i>
+		İletişim
+	</div>
+	<div class="card-body">
+
+		<div class="table-responsive">
+			
+			<table class="table table-bordered display" id="newsTable" width="100%" cellspacing="0">
+				<thead>
+					<tr>
+
+						<th>
+							@Html.DisplayNameFor(model => model.Data.Contacts.First().Name)
+						</th>
+						<th>
+							@Html.DisplayNameFor(model => model.Data.Contacts.First().Email)
+						</th>
+						<th>
+							@Html.DisplayNameFor(model => model.Data.Contacts.First().Message)
+						</th>
+						
+						<th>
+							@Html.DisplayNameFor(model => model.Data.Contacts.First().IsActive)
+						</th>
+
+						<th>İşlemler</th>
+
+					</tr>
+				</thead>
+
+				<tbody>
+					@foreach (var item in Model.Data.Contacts)
+					{
+						<tr>
+							<td>
+								@Html.DisplayFor(modelItem => item.Name)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.Email)
+							</td>
+							<td>
+								@(item.Message.ToString().Length > 300 ? item.Message.ToString().Substring(0, 300) + "..." : item.Message)
+							</td>
+
+							<td>@(item.IsActive ? "Yes" : "No")</td>
+
+							<td class="text-nowrap">
+								<a class="btn btn-primary btn-sm " asp-area="Admin" asp-controller="Contact" asp-action="Edit" asp-route-id="@item.Id"><span class="fas fa-edit"></span></a>
+								<a class="btn btn-success btn-sm " asp-controller="Contact" asp-action="Details" asp-route-contactId="@item.Id"><span class="fas fa-newspaper"></span></a>
+							</td>
+						</tr>
+					}
+				</tbody>
+				<tfoot>
+
+					<tr>
+
+						<th>
+							@Html.DisplayNameFor(model => model.Data.Contacts.First().Name)
+						</th>
+						<th>
+							@Html.DisplayNameFor(model => model.Data.Contacts.First().Email)
+						</th>
+						<th>
+							@Html.DisplayNameFor(model => model.Data.Contacts.First().Message)
+						</th>
+
+						<th>
+							@Html.DisplayNameFor(model => model.Data.Contacts.First().IsActive)
+						</th>
+
+						<th>İşlemler</th>
+
+					</tr>
+				</tfoot>
+			</table>
+		</div>
+	</div>
+</div>

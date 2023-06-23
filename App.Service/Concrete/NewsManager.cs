@@ -51,9 +51,10 @@ namespace App.Service.Concrete
 
         public async Task<IDataResult<NewsDto>> GetAsync(int newsId)
         {
-            var news = await _unitOfWork.News.GetAsync(a => a.Id == newsId, a => a.User, a => a.Category);
+            var news = await _unitOfWork.News.GetAsync(a => a.Id == newsId, a => a.User, a => a.Category,news=>news.NewsComments);
             if (news != null)
             {
+                news.NewsComments = await _unitOfWork.NewsComments.GetAllAsync(c => c.NewsId == newsId && !c.IsDeleted&&c.IsActive);
                 return new DataResult<NewsDto>(ResultStatus.Success, new NewsDto
                 {
                     News = news,
@@ -221,6 +222,8 @@ namespace App.Service.Concrete
             var searchedNews = await _unitOfWork.News.SearchAsync(new List<Expression<Func<News, bool>>>
             {
                 news=>news.Title.ToUpper().Contains(keyword.ToUpper()),
+                news=>news.SubTitle.ToUpper().Contains(keyword.ToUpper()),
+                news=>news.Content.ToUpper().Contains(keyword.ToUpper()),
                 news=>news.Category.Name.ToUpper().Contains(keyword.ToUpper())
             },
               news=>news.Category);

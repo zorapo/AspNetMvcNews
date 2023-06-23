@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using App.Entities.Concrete;
+using Microsoft.AspNetCore.Http;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -23,7 +24,6 @@ namespace App.Entities.Dtos.UserDtos
         [MinLength(10, ErrorMessage = "{0} {1} karakterden az olmamalıdır.")]
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
-
 
         [DisplayName("Resim Ekle")]
         public IFormFile? PictureFile { get; set; }
